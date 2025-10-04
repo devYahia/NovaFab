@@ -1,4 +1,4 @@
-﻿import { jwtVerify } from "jose";
+import { jwtVerify } from "jose";
 import { NextRequest } from "next/server";
 
 const JWT_SECRET = process.env.JWT_SECRET || "fallback-secret-key";
@@ -27,19 +27,11 @@ export interface JWTPayload {
 // Edge Runtime compatible JWT verification using jose
 export async function verifyTokenEdge(token: string): Promise<JWTPayload | null> {
   try {
-    console.log("Auth Edge - Verifying token with jose");
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret);
     
-    console.log("Auth Edge - Token verified successfully:", {
-      id: payload.id || payload.userId,
-      email: payload.email,
-      role: payload.role,
-    });
-    
     return payload as JWTPayload;
   } catch (error) {
-    console.error("Auth Edge - Token verification failed:", error);
     return null;
   }
 }
@@ -49,11 +41,8 @@ export async function getUserFromTokenEdge(token: string): Promise<User | null> 
   const payload = await verifyTokenEdge(token);
   if (!payload) return null;
 
-  console.log("Auth Edge - Processing payload:", payload);
-
   // Handle admin users
   if (payload.role === "ADMIN") {
-    console.log("Auth Edge - Creating admin user from token");
     return {
       id: payload.id || payload.userId || "",
       email: payload.email,
@@ -66,7 +55,6 @@ export async function getUserFromTokenEdge(token: string): Promise<User | null> 
 
   // Handle customer users
   if (payload.role === "CUSTOMER") {
-    console.log("Auth Edge - Creating customer user from token");
     return {
       id: payload.id || payload.userId || "",
       email: payload.email,
@@ -77,7 +65,6 @@ export async function getUserFromTokenEdge(token: string): Promise<User | null> 
     };
   }
 
-  console.log("Auth Edge - Unknown user role:", payload.role);
   return null;
 }
 
@@ -99,14 +86,9 @@ export async function getCurrentUserEdge(
   request: NextRequest,
 ): Promise<User | null> {
   const token = getTokenFromRequest(request);
-  console.log("Auth Edge - Token found:", token ? "Yes" : "No");
   if (!token) return null;
 
   const user = await getUserFromTokenEdge(token);
-  console.log(
-    "Auth Edge - User from token:",
-    user ? { id: user.id, role: user.role } : "No user",
-  );
   return user;
 }
 

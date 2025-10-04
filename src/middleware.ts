@@ -21,13 +21,6 @@ export async function middleware(request: NextRequest) {
   // Get current user
   const user = await getCurrentUserEdge(request);
 
-  // Debug logging
-  console.log("Middleware - Path:", pathname);
-  console.log(
-    "Middleware - User:",
-    user ? { id: user.id, role: user.role } : "No user",
-  );
-
   // Check if route is protected
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route),

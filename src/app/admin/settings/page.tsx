@@ -225,7 +225,6 @@ export default function AdminSettingsPage() {
 
   const handleSave = () => {
     // Save settings logic here
-    console.log("Saving settings:", settings);
     setHasChanges(false);
   };
 

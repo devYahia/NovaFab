@@ -47,11 +47,11 @@ export function generateToken(payload: JWTPayload): string {
 }
 
 // Verify JWT token (Node.js runtime)
-export function verifyToken(token: string): JWTPayload | null {
+export async function verifyToken(token: string): Promise<JWTPayload | null> {
   try {
-    return jwt.verify(token, JWT_SECRET) as JWTPayload;
-  } catch {
-    console.log("Auth - Token verification failed");
+    const decoded = jwt.verify(token, JWT_SECRET) as JWTPayload;
+    return decoded;
+  } catch (error) {
     return null;
   }
 }
@@ -61,13 +61,8 @@ export async function verifyTokenEdge(
   token: string,
 ): Promise<JWTPayload | null> {
   try {
-    console.log(
-      "Auth - Verifying token with secret:",
-      JWT_SECRET.substring(0, 10) + "...",
-    );
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret);
-    console.log("Auth - Token verification successful:", payload);
 
     // Safely convert jose JWTPayload to our custom JWTPayload
     if (
@@ -95,32 +90,40 @@ export async function verifyTokenEdge(
     }
     return null;
   } catch (error) {
-    console.log(
-      "Auth - Token verification failed:",
-      error instanceof Error ? error.message : "Unknown error",
-    );
     return null;
   }
 }
 
 // Get user from token (Node.js runtime with database)
 export async function getUserFromToken(token: string): Promise<User | null> {
-  const payload = verifyToken(token);
+  const payload = await verifyToken(token);
   if (!payload) return null;
 
-  const user = await prisma.user.findUnique({
-    where: { id: payload.userId },
-    select: {
-      id: true,
-      email: true,
-      firstName: true,
-      lastName: true,
-      role: true,
+  // Handle admin users
+  if (payload.role === "ADMIN") {
+    return {
+      id: payload.id || payload.userId || "",
+      email: payload.email,
+      firstName: "Admin",
+      lastName: "User",
+      role: "ADMIN" as const,
       isActive: true,
-    },
-  });
+    };
+  }
 
-  return user;
+  // Handle customer users
+  if (payload.role === "CUSTOMER") {
+    return {
+      id: payload.id || payload.userId || "",
+      email: payload.email,
+      firstName: "Registered",
+      lastName: "Customer",
+      role: "CUSTOMER" as const,
+      isActive: true,
+    };
+  }
+
+  return null;
 }
 
 // Get user from token (Edge Runtime compatible - no database access)
@@ -128,18 +131,10 @@ export async function getUserFromTokenEdge(
   token: string,
 ): Promise<User | null> {
   try {
-    console.log("Auth - Verifying token");
-    const payload = verifyToken(token);
-    console.log(
-      "Auth - Token verified, payload:",
-      payload
-        ? { id: payload.id, email: payload.email, role: payload.role }
-        : "No payload",
-    );
+    const payload = await verifyToken(token);
 
     return createUserFromPayload(payload);
   } catch (error) {
-    console.log("Auth - Token verification failed:", error);
     return null;
   }
 }
@@ -150,7 +145,6 @@ function createUserFromPayload(payload: JWTPayload | null): User | null {
 
   // Handle admin users (they come from environment variables)
   if (payload.role === "ADMIN") {
-    console.log("Auth - Creating admin user from token");
     return {
       id: payload.id || payload.userId || "",
       email: payload.email,
@@ -163,7 +157,6 @@ function createUserFromPayload(payload: JWTPayload | null): User | null {
 
   // Handle customer users
   if (payload.role === "CUSTOMER") {
-    console.log("Auth - Creating customer user from token");
     return {
       id: payload.id || payload.userId || "",
       email: payload.email,
@@ -174,7 +167,6 @@ function createUserFromPayload(payload: JWTPayload | null): User | null {
     };
   }
 
-  console.log("Auth - Unknown user role:", payload.role);
   return null;
 }
 
@@ -191,14 +183,42 @@ export function getTokenFromRequest(request: NextRequest): string | null {
   return tokenCookie?.value || null;
 }
 
+// Extract token from cookies (client-side)
+export function getTokenFromCookies(): string | null {
+  if (typeof document === "undefined") return null;
+  
+  const cookies = document.cookie.split(';');
+  for (const cookie of cookies) {
+    const [name, value] = cookie.trim().split('=');
+    if (name === 'token' || name === 'auth-token') {
+      return value;
+    }
+  }
+  return null;
+}
+
 // Middleware helper to get current user (Node.js runtime with database)
 export async function getCurrentUser(
-  request: NextRequest,
+  request?: NextRequest,
 ): Promise<User | null> {
-  const token = getTokenFromRequest(request);
-  if (!token) return null;
+  try {
+    let token: string | null = null;
 
-  return getUserFromToken(token);
+    if (request) {
+      // Server-side: get token from request
+      token = getTokenFromRequest(request);
+    } else {
+      // Client-side: get token from cookies
+      token = getTokenFromCookies();
+    }
+
+    if (!token) return null;
+
+    const user = await getUserFromToken(token);
+    return user;
+  } catch (error) {
+    return null;
+  }
 }
 
 // Middleware helper to get current user (Edge Runtime compatible)
@@ -206,14 +226,9 @@ export async function getCurrentUserEdge(
   request: NextRequest,
 ): Promise<User | null> {
   const token = getTokenFromRequest(request);
-  console.log("Auth - Token found:", token ? "Yes" : "No");
   if (!token) return null;
 
   const user = await getUserFromTokenEdge(token);
-  console.log(
-    "Auth - User from token:",
-    user ? { id: user.id, role: user.role } : "No user",
-  );
   return user;
 }
 

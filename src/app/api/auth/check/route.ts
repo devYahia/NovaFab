@@ -3,15 +3,11 @@ import { getCurrentUserEdge } from "@/lib/auth";
 
 export async function GET(request: NextRequest) {
   try {
-    console.log("Auth Check - Starting...");
-
     // Get all cookies
     const cookies = request.cookies.getAll();
-    console.log("Auth Check - All cookies:", cookies);
 
     // Get current user
     const user = await getCurrentUserEdge(request);
-    console.log("Auth Check - Current user:", user);
 
     return NextResponse.json({
       success: true,
@@ -23,7 +19,6 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("Auth Check - Error:", error);
     return NextResponse.json(
       {
         success: false,

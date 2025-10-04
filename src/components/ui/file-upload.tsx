@@ -263,7 +263,7 @@ export function FileUpload({
           method: "DELETE",
         });
       } catch (error) {
-        console.error("Error deleting file:", error);
+        // Error deleting file - continue with local removal
       }
     }
 
@@ -279,7 +279,7 @@ export function FileUpload({
     if (file && file.status === "error") {
       // Create a new File object from the stored data
       // Note: This is a simplified retry - in a real app you'd store the original File
-      console.log("Retry upload for:", file.name);
+      // Retry upload functionality would be implemented here
     }
   };
 

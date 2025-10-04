@@ -292,8 +292,6 @@ export default function NewOrderPage() {
     e.preventDefault();
 
     // Here you would submit the order to your API
-    console.log("Submitting order:", formData);
-
     // For now, just show success and redirect
     alert("Order submitted successfully!");
     // In a real app: router.push('/dashboard/orders')

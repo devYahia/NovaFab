@@ -47,7 +47,6 @@ export function SmartLogo({
           setIsAuthenticated(false);
         }
       } catch (error) {
-        console.log("Auth check failed:", error);
         setIsAuthenticated(false);
       } finally {
         setIsLoading(false);

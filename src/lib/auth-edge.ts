@@ -30,7 +30,33 @@ export async function verifyTokenEdge(token: string): Promise<JWTPayload | null>
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret);
     
-    return payload as JWTPayload;
+    // Safely convert jose JWTPayload to our custom JWTPayload
+    if (
+      payload &&
+      typeof payload === "object" &&
+      "email" in payload &&
+      "role" in payload
+    ) {
+      // Handle both 'id' and 'userId' fields
+      const userId = (
+        "id" in payload
+          ? payload.id
+          : "userId" in payload
+            ? payload.userId
+            : null
+      ) as string;
+      
+      return {
+        id: userId,
+        userId: userId,
+        email: payload.email as string,
+        role: payload.role as "ADMIN" | "CUSTOMER",
+        name: payload.name as string | undefined,
+        iat: payload.iat as number | undefined,
+        exp: payload.exp as number | undefined,
+      };
+    }
+    return null;
   } catch (error) {
     return null;
   }

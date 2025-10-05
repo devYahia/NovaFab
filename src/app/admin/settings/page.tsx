@@ -148,7 +148,7 @@ interface PasswordPolicy {
 interface Integration {
   enabled: boolean;
   status: string;
-  [key: string]: any;
+  [key: string]: string | boolean;
 }
 
 interface Settings {
@@ -206,14 +206,14 @@ export default function AdminSettingsPage() {
   const handleInputChange = (
     section: keyof Settings,
     field: string,
-    value: any,
+    value: string | number | boolean,
   ) => {
     setSettings((prev) => ({
       ...prev,
       [section]: {
         ...prev[section],
         [field]: value,
-      } as any,
+      },
     }));
     setHasChanges(true);
   };

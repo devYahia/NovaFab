@@ -253,7 +253,7 @@ export default function AboutPage() {
               Our Team
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Meet the creative people behind NovaFab's success
+              Meet the creative people behind NovaFab&apos;s success
             </p>
           </div>
 

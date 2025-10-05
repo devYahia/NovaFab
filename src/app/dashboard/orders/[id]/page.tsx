@@ -145,11 +145,12 @@ const mockOrder = {
   ],
 };
 
-export default function OrderDetailsPage({
+export default async function OrderDetailsPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const [order, setOrder] = useState(mockOrder);
   const [newMessage, setNewMessage] = useState("");
 

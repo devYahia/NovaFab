@@ -281,8 +281,8 @@ export default function AdminCustomersPage() {
   });
 
   const sortedCustomers = [...filteredCustomers].sort((a, b) => {
-    let aValue: any = a[sortBy as keyof typeof a];
-    let bValue: any = b[sortBy as keyof typeof b];
+    let aValue: string | number = a[sortBy as keyof typeof a] as string | number;
+    let bValue: string | number = b[sortBy as keyof typeof b] as string | number;
 
     if (typeof aValue === "string") {
       aValue = aValue.toLowerCase();

@@ -156,7 +156,7 @@ interface OrderForm {
   quantity: number;
   urgency: string;
   notes: string;
-  files: any[];
+  files: File[];
   specifications: {
     dimensions: string;
     tolerance: string;
@@ -254,7 +254,7 @@ export default function NewOrderPage() {
     return totalCost;
   };
 
-  const handleInputChange = (field: string, value: any) => {
+  const handleInputChange = (field: string, value: string | number) => {
     setFormData((prev) => ({
       ...prev,
       [field]: value,
@@ -281,7 +281,7 @@ export default function NewOrderPage() {
     }));
   };
 
-  const handleFileUpload = (files: any[]) => {
+  const handleFileUpload = (files: File[]) => {
     setFormData((prev) => ({
       ...prev,
       files: files,

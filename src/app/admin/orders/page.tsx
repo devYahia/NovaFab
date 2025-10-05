@@ -34,8 +34,29 @@ import {
   Printer,
 } from "lucide-react";
 
+type Order = {
+  id: string;
+  customer: {
+    name: string;
+    email: string;
+    company: string;
+  };
+  title: string;
+  description: string;
+  serviceType: string;
+  material: string;
+  quantity: number;
+  status: string;
+  urgency: string;
+  totalCost: number;
+  createdAt: string;
+  estimatedDelivery: string;
+  assignedTo: string | null;
+  progress: number;
+};
+
 // Mock orders data
-const mockOrders = [
+const mockOrders: Order[] = [
   {
     id: "ORD-156",
     customer: {
@@ -177,7 +198,7 @@ const statuses = [
 const urgencies = ["All", "standard", "urgent"];
 
 // Receipt printing function
-const printReceipt = (order: any) => {
+const printReceipt = (order: Order) => {
   const receiptWindow = window.open("", "_blank", "width=800,height=600");
   if (!receiptWindow) return;
 
@@ -498,8 +519,8 @@ export default function AdminOrdersPage() {
   });
 
   const sortedOrders = [...filteredOrders].sort((a, b) => {
-    let aValue: any = a[sortBy as keyof typeof a];
-    let bValue: any = b[sortBy as keyof typeof b];
+    let aValue: string | number = a[sortBy as keyof typeof a] as string | number;
+    let bValue: string | number = b[sortBy as keyof typeof b] as string | number;
 
     if (sortBy === "customer") {
       aValue = a.customer.name;

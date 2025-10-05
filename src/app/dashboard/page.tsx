@@ -102,144 +102,173 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Welcome back!</h1>
-            <p className="mt-1 text-sm text-gray-600">
-              Here&apos;s what&apos;s happening with your orders today.
-            </p>
-          </div>
-          <Link href="/dashboard/orders/new">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              <Plus className="h-4 w-4 mr-2" />
-              New Order
-            </Button>
-          </Link>
-        </div>
-      </div>
-
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Orders</CardTitle>
-            <FileText className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.totalOrders}</div>
-            <p className="text-xs text-muted-foreground">All time</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Orders</CardTitle>
-            <Package className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.activeOrders}</div>
-            <p className="text-xs text-muted-foreground">In progress</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Completed</CardTitle>
-            <CheckCircle className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{stats.completedOrders}</div>
-            <p className="text-xs text-muted-foreground">
-              Successfully delivered
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              ${stats.totalSpent.toFixed(2)}
-            </div>
-            <p className="text-xs text-muted-foreground">All time</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Recent Orders */}
-      <Card className="mb-8">
-        <CardHeader>
+    <div className="space-y-8">
+      {/* Header with gradient background */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 p-8 text-white">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="relative z-10">
           <div className="flex justify-between items-center">
             <div>
-              <CardTitle>Recent Orders</CardTitle>
-              <CardDescription>
-                Your latest manufacturing orders
+              <h1 className="text-4xl font-bold mb-2">مرحباً بك مرة أخرى! 👋</h1>
+              <p className="text-blue-100 text-lg">
+                إليك ما يحدث مع طلباتك اليوم
+              </p>
+            </div>
+            <Link href="/dashboard/orders/new">
+              <Button className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30 transition-all duration-300 hover:scale-105">
+                <Plus className="h-5 w-5 mr-2" />
+                طلب جديد
+              </Button>
+            </Link>
+          </div>
+        </div>
+        {/* Decorative elements */}
+        <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+        <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl"></div>
+      </div>
+
+      {/* Enhanced Statistics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-blue-50 to-blue-100">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-blue-500/10 rounded-full -translate-y-10 translate-x-10"></div>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-blue-700">إجمالي الطلبات</CardTitle>
+            <div className="p-2 bg-blue-500 rounded-lg">
+              <FileText className="h-4 w-4 text-white" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-blue-900">{stats.totalOrders}</div>
+            <p className="text-xs text-blue-600 mt-1">جميع الأوقات</p>
+          </CardContent>
+        </Card>
+
+        <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-orange-50 to-orange-100">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-orange-500/10 rounded-full -translate-y-10 translate-x-10"></div>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-orange-700">الطلبات النشطة</CardTitle>
+            <div className="p-2 bg-orange-500 rounded-lg">
+              <Package className="h-4 w-4 text-white" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-orange-900">{stats.activeOrders}</div>
+            <p className="text-xs text-orange-600 mt-1">قيد التنفيذ</p>
+          </CardContent>
+        </Card>
+
+        <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-green-50 to-green-100">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-green-500/10 rounded-full -translate-y-10 translate-x-10"></div>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-green-700">مكتملة</CardTitle>
+            <div className="p-2 bg-green-500 rounded-lg">
+              <CheckCircle className="h-4 w-4 text-white" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-green-900">{stats.completedOrders}</div>
+            <p className="text-xs text-green-600 mt-1">تم التسليم بنجاح</p>
+          </CardContent>
+        </Card>
+
+        <Card className="relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-purple-50 to-purple-100">
+          <div className="absolute top-0 right-0 w-20 h-20 bg-purple-500/10 rounded-full -translate-y-10 translate-x-10"></div>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-purple-700">إجمالي المصروفات</CardTitle>
+            <div className="p-2 bg-purple-500 rounded-lg">
+              <DollarSign className="h-4 w-4 text-white" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-3xl font-bold text-purple-900">
+              ${stats.totalSpent.toFixed(2)}
+            </div>
+            <p className="text-xs text-purple-600 mt-1">جميع الأوقات</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Enhanced Recent Orders */}
+      <Card className="border-0 shadow-lg">
+        <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-t-lg">
+          <div className="flex justify-between items-center">
+            <div>
+              <CardTitle className="text-xl text-gray-800">الطلبات الأخيرة</CardTitle>
+              <CardDescription className="text-gray-600">
+                أحدث طلبات التصنيع الخاصة بك
               </CardDescription>
             </div>
             <Link href="/dashboard/orders">
-              <Button variant="outline">View All</Button>
+              <Button variant="outline" className="hover:bg-blue-50 hover:border-blue-300 transition-colors">
+                عرض الكل
+              </Button>
             </Link>
           </div>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-6">
           <div className="space-y-4">
-            {orders.map((order) => (
+            {orders.map((order, index) => (
               <div
                 key={order.id}
-                className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors"
+                className="group relative overflow-hidden rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all duration-300"
+                style={{
+                  animationDelay: `${index * 100}ms`,
+                }}
               >
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-2">
-                    {getStatusIcon(order.status)}
-                    <div>
-                      <h4 className="font-medium text-gray-900">
-                        {order.title}
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        {order.id} • {order.serviceType}
-                      </p>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-50/0 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                    <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                      <div className="p-2 rounded-lg bg-blue-100">
+                        {getStatusIcon(order.status)}
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                          {order.title}
+                        </h4>
+                        <p className="text-sm text-gray-600">
+                          {order.id} • {order.serviceType}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900">
-                      ${order.totalCost.toFixed(2)}
-                    </p>
-                    <p className="text-xs text-gray-600">
-                      Due:{" "}
-                      {new Date(order.estimatedDelivery).toLocaleDateString(
-                        "en-US",
-                        {
-                          year: "numeric",
-                          month: "numeric",
-                          day: "numeric",
-                        },
-                      )}
-                    </p>
+                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                    <div className="text-right">
+                      <p className="text-sm font-medium text-gray-900">
+                        ${order.totalCost.toFixed(2)}
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        تاريخ التسليم:{" "}
+                        {new Date(order.estimatedDelivery).toLocaleDateString(
+                          "ar-EG",
+                          {
+                            year: "numeric",
+                            month: "numeric",
+                            day: "numeric",
+                          },
+                        )}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col space-y-1">
+                      <Badge className={getStatusColor(order.status)}>
+                        {order.status.replace("_", " ")}
+                      </Badge>
+                      <Badge
+                        variant="outline"
+                        className={getUrgencyColor(order.urgency)}
+                      >
+                        {order.urgency}
+                      </Badge>
+                    </div>
+
+                    <Link href={`/dashboard/orders/${order.id}`}>
+                      <Button variant="ghost" size="sm" className="hover:bg-blue-50">
+                        عرض
+                      </Button>
+                    </Link>
                   </div>
-
-                  <div className="flex flex-col space-y-1">
-                    <Badge className={getStatusColor(order.status)}>
-                      {order.status.replace("_", " ")}
-                    </Badge>
-                    <Badge
-                      variant="outline"
-                      className={getUrgencyColor(order.urgency)}
-                    >
-                      {order.urgency}
-                    </Badge>
-                  </div>
-
-                  <Link href={`/dashboard/orders/${order.id}`}>
-                    <Button variant="ghost" size="sm">
-                      View
-                    </Button>
-                  </Link>
                 </div>
               </div>
             ))}
@@ -247,42 +276,52 @@ export default function Dashboard() {
         </CardContent>
       </Card>
 
-      {/* Quick Actions */}
+      {/* Enhanced Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="cursor-pointer hover:shadow-lg transition-shadow">
+        <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-blue-50 to-blue-100">
           <Link href="/dashboard/orders/new">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Plus className="h-5 w-5 text-blue-600" />
-                <span>New Order</span>
+            <CardHeader className="text-center p-8">
+              <div className="mx-auto w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Plus className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-xl text-blue-900 mb-2">
+                طلب جديد
               </CardTitle>
-              <CardDescription>
-                Start a new manufacturing project
+              <CardDescription className="text-blue-700">
+                ابدأ مشروع تصنيع جديد
               </CardDescription>
             </CardHeader>
           </Link>
         </Card>
 
-        <Card className="cursor-pointer hover:shadow-lg transition-shadow">
+        <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-green-50 to-green-100">
           <Link href="/dashboard/orders">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Package className="h-5 w-5 text-green-600" />
-                <span>View Orders</span>
+            <CardHeader className="text-center p-8">
+              <div className="mx-auto w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Package className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-xl text-green-900 mb-2">
+                عرض الطلبات
               </CardTitle>
-              <CardDescription>Manage your existing orders</CardDescription>
+              <CardDescription className="text-green-700">
+                إدارة طلباتك الحالية
+              </CardDescription>
             </CardHeader>
           </Link>
         </Card>
 
-        <Card className="cursor-pointer hover:shadow-lg transition-shadow">
+        <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-purple-50 to-purple-100">
           <Link href="/dashboard/profile">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <User className="h-5 w-5 text-purple-600" />
-                <span>Profile</span>
+            <CardHeader className="text-center p-8">
+              <div className="mx-auto w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <User className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-xl text-purple-900 mb-2">
+                الملف الشخصي
               </CardTitle>
-              <CardDescription>Update your account settings</CardDescription>
+              <CardDescription className="text-purple-700">
+                تحديث إعدادات حسابك
+              </CardDescription>
             </CardHeader>
           </Link>
         </Card>

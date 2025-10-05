@@ -2,19 +2,41 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { existsSync } from "fs";
+import logger from "@/lib/logger";
 
 export async function POST(request: NextRequest) {
+  const startTime = Date.now();
+  let userId: string | undefined;
+  
   try {
+    // Log request start
+    logger.info("File upload request started", "UPLOAD");
+    
     const formData = await request.formData();
     const file = formData.get("file") as File;
     const folder = (formData.get("folder") as string) || "novafab";
+    userId = formData.get("userId") as string || undefined;
+
+    logger.debug("Upload request details", "UPLOAD", { 
+      fileName: file?.name, 
+      fileSize: file?.size, 
+      folder,
+      userId 
+    });
 
     if (!file) {
+      logger.warn("Upload failed: No file provided", "UPLOAD", null, userId);
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
     // Check file size (max 10MB)
-    if (file.size > 10 * 1024 * 1024) {
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+      logger.warn("Upload failed: File size too large", "UPLOAD", { 
+        fileName: file.name, 
+        fileSize: file.size, 
+        maxSize 
+      }, userId);
       return NextResponse.json(
         { error: "File size too large. Maximum size is 10MB." },
         { status: 400 },
@@ -34,6 +56,11 @@ export async function POST(request: NextRequest) {
     ];
 
     if (!allowedTypes.includes(file.type)) {
+      logger.warn("Upload failed: Invalid file type", "UPLOAD", { 
+        fileName: file.name, 
+        fileType: file.type, 
+        allowedTypes 
+      }, userId);
       return NextResponse.json(
         {
           error:
@@ -47,37 +74,46 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Create uploads directory if it doesn't exist
-    const uploadsDir = join(process.cwd(), "public", "uploads", folder);
-    if (!existsSync(uploadsDir)) {
-      await mkdir(uploadsDir, { recursive: true });
+    // Create upload directory if it doesn't exist
+    const uploadDir = join(process.cwd(), "public", "uploads", folder);
+    if (!existsSync(uploadDir)) {
+      logger.debug("Creating upload directory", "UPLOAD", { uploadDir }, userId);
+      await mkdir(uploadDir, { recursive: true });
     }
 
     // Generate unique filename
     const timestamp = Date.now();
-    const randomString = Math.random().toString(36).substring(2, 15);
     const fileExtension = file.name.split(".").pop();
-    const fileName = `${timestamp}_${randomString}.${fileExtension}`;
-    const filePath = join(uploadsDir, fileName);
+    const fileName = `${timestamp}.${fileExtension}`;
+    const filePath = join(uploadDir, fileName);
 
-    // Save file locally
+    logger.debug("Saving file", "UPLOAD", { 
+      originalName: file.name, 
+      fileName, 
+      filePath 
+    }, userId);
+
+    // Convert file to buffer and save
     await writeFile(filePath, buffer);
 
-    // Generate public URL
-    const publicUrl = `/uploads/${folder}/${fileName}`;
-    const publicId = `${folder}/${fileName}`;
+    const duration = Date.now() - startTime;
+    const fileUrl = `/uploads/${folder}/${fileName}`;
+    
+    // Log successful upload
+    logger.upload(file.name, file.size, true, userId);
+    logger.api("POST", "/api/upload", 200, duration, userId);
 
+    // Return success response with file URL
     return NextResponse.json({
-      success: true,
-      url: publicUrl,
-      public_id: publicId,
-      filename: file.name,
-      size: file.size,
-      type: file.type,
-      bytes: file.size,
-      format: fileExtension,
+      message: "File uploaded successfully",
+      url: fileUrl,
+      public_id: fileName,
     });
   } catch (error) {
+    const duration = Date.now() - startTime;
+    logger.error("Upload failed with error", "UPLOAD", error, userId);
+    logger.api("POST", "/api/upload", 500, duration, userId);
+    
     console.error("Upload API error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
@@ -87,33 +123,55 @@ export async function POST(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
+  const startTime = Date.now();
+  let userId: string | undefined;
+  
   try {
+    logger.info("File delete request started", "UPLOAD");
+    
     const { searchParams } = new URL(request.url);
     const publicId = searchParams.get("public_id");
+    userId = searchParams.get("userId") || undefined;
+
+    logger.debug("Delete request details", "UPLOAD", { publicId, userId });
 
     if (!publicId) {
+      logger.warn("Delete failed: public_id is required", "UPLOAD", null, userId);
       return NextResponse.json(
-        { error: "No public_id provided" },
+        { error: "public_id is required" },
         { status: 400 },
       );
     }
 
-    // Delete file from local storage
-    const filePath = join(process.cwd(), "public", "uploads", publicId);
+    // Extract folder and filename from public_id
+    const pathParts = publicId.split("/");
+    const folder = pathParts.length > 1 ? pathParts[0] : "novafab";
+    const fileName = pathParts.length > 1 ? pathParts[1] : pathParts[0];
 
-    try {
-      const { unlink } = await import("fs/promises");
-      await unlink(filePath);
-    } catch (error) {
-      console.error("File deletion error:", error);
-      // File might not exist, continue anyway
+    const filePath = join(process.cwd(), "public", "uploads", folder, fileName);
+
+    logger.debug("Attempting to delete file", "UPLOAD", { filePath }, userId);
+
+    // Check if file exists
+    if (!existsSync(filePath)) {
+      logger.warn("Delete failed: File not found", "UPLOAD", { filePath }, userId);
+      return NextResponse.json({ error: "File not found" }, { status: 404 });
     }
 
-    return NextResponse.json({
-      success: true,
-      message: "File deleted successfully",
-    });
+    // Delete the file
+    const fs = require("fs").promises;
+    await fs.unlink(filePath);
+
+    const duration = Date.now() - startTime;
+    logger.info("File deleted successfully", "UPLOAD", { fileName, filePath }, userId);
+    logger.api("DELETE", "/api/upload", 200, duration, userId);
+
+    return NextResponse.json({ message: "File deleted successfully" });
   } catch (error) {
+    const duration = Date.now() - startTime;
+    logger.error("Delete failed with error", "UPLOAD", error, userId);
+    logger.api("DELETE", "/api/upload", 500, duration, userId);
+    
     console.error("Delete API error:", error);
     return NextResponse.json(
       { error: "Internal server error" },

@@ -16,6 +16,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logger from "@/lib/logger";
 
 interface UploadedFile {
   id: string;
@@ -96,6 +97,13 @@ export function FileUpload({
     async (file: File): Promise<UploadedFile> => {
       const fileId = Math.random().toString(36).substr(2, 9);
 
+      logger.info("Starting file upload", "UPLOAD_COMPONENT", { 
+        fileName: file.name, 
+        fileSize: file.size, 
+        fileType: file.type,
+        fileId 
+      });
+
       const uploadedFile: UploadedFile = {
         id: fileId,
         name: file.name,
@@ -113,6 +121,12 @@ export function FileUpload({
         const formData = new FormData();
         formData.append("file", file);
         formData.append("folder", folder);
+
+        logger.debug("Sending upload request", "UPLOAD_COMPONENT", { 
+          fileName: file.name, 
+          folder,
+          fileId 
+        });
 
         // Simulate progress
         const progressInterval = setInterval(() => {
@@ -134,10 +148,23 @@ export function FileUpload({
 
         if (!response.ok) {
           const error = await response.json();
+          logger.error("Upload request failed", "UPLOAD_COMPONENT", { 
+            fileName: file.name, 
+            status: response.status,
+            error: error.error,
+            fileId 
+          });
           throw new Error(error.error || "Upload failed");
         }
 
         const result = await response.json();
+
+        logger.info("File upload successful", "UPLOAD_COMPONENT", { 
+          fileName: file.name, 
+          url: result.url,
+          publicId: result.public_id,
+          fileId 
+        });
 
         const successFile: UploadedFile = {
           ...uploadedFile,
@@ -153,6 +180,12 @@ export function FileUpload({
 
         return successFile;
       } catch (error) {
+        logger.error("File upload failed", "UPLOAD_COMPONENT", { 
+          fileName: file.name, 
+          error: error instanceof Error ? error.message : "Upload failed",
+          fileId 
+        });
+
         const errorFile: UploadedFile = {
           ...uploadedFile,
           status: "error",
@@ -257,13 +290,40 @@ export function FileUpload({
 
   const removeFile = async (fileId: string) => {
     const file = files.find((f) => f.id === fileId);
+    
+    logger.info("Removing file", "UPLOAD_COMPONENT", { 
+      fileId, 
+      fileName: file?.name,
+      publicId: file?.public_id 
+    });
+
     if (file && file.public_id) {
       try {
-        await fetch(`/api/upload?public_id=${file.public_id}`, {
+        logger.debug("Sending delete request", "UPLOAD_COMPONENT", { 
+          fileId, 
+          publicId: file.public_id 
+        });
+
+        const response = await fetch(`/api/upload?public_id=${file.public_id}`, {
           method: "DELETE",
         });
+
+        if (!response.ok) {
+          logger.warn("Delete request failed", "UPLOAD_COMPONENT", { 
+            fileId, 
+            status: response.status 
+          });
+        } else {
+          logger.info("File deleted from server", "UPLOAD_COMPONENT", { 
+            fileId, 
+            fileName: file.name 
+          });
+        }
       } catch (error) {
-        // Error deleting file - continue with local removal
+        logger.error("Error deleting file from server", "UPLOAD_COMPONENT", { 
+          fileId, 
+          error: error instanceof Error ? error.message : "Delete failed" 
+        });
       }
     }
 
@@ -272,6 +332,8 @@ export function FileUpload({
     if (onFileRemoved) {
       onFileRemoved(fileId);
     }
+
+    logger.info("File removed from UI", "UPLOAD_COMPONENT", { fileId });
   };
 
   const retryUpload = (fileId: string) => {

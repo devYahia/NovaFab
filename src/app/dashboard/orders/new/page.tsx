@@ -22,10 +22,10 @@ import {
 } from "@/components/ui/select";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
+import { FileUpload } from "@/components/ui/file-upload";
 import {
   Factory,
   ArrowLeft,
-  Upload,
   Calculator,
   Info,
   CheckCircle,
@@ -36,117 +36,12 @@ import {
   Truck,
   CreditCard,
   Check,
-  X,
   Plus,
   Minus,
 } from "lucide-react";
 
 // File Upload Component
-interface FileUploadProps {
-  onFilesChange: (files: File[]) => void;
-  maxFiles?: number;
-  acceptedTypes?: string[];
-}
 
-function FileUpload({
-  onFilesChange,
-  maxFiles = 5,
-  acceptedTypes = [".stl", ".obj", ".3mf"],
-}: FileUploadProps) {
-  const [files, setFiles] = useState<File[]>([]);
-  const [dragActive, setDragActive] = useState(false);
-
-  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  };
-
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-
-    const droppedFiles = Array.from(e.dataTransfer.files);
-    handleFiles(droppedFiles);
-  };
-
-  const handleFiles = (newFiles: File[]) => {
-    const validFiles = newFiles.filter((file) => {
-      const extension = "." + file.name.split(".").pop()?.toLowerCase();
-      return acceptedTypes.includes(extension);
-    });
-
-    const updatedFiles = [...files, ...validFiles].slice(0, maxFiles);
-    setFiles(updatedFiles);
-    onFilesChange(updatedFiles);
-  };
-
-  const removeFile = (index: number) => {
-    const updatedFiles = files.filter((_, i) => i !== index);
-    setFiles(updatedFiles);
-    onFilesChange(updatedFiles);
-  };
-
-  return (
-    <div className="space-y-4">
-      <div
-        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-          dragActive
-            ? "border-blue-500 bg-blue-50"
-            : "border-gray-300 hover:border-gray-400"
-        }`}
-        onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
-        onDragOver={handleDrag}
-        onDrop={handleDrop}
-      >
-        <Upload className="h-8 w-8 mx-auto text-gray-400 mb-2" />
-        <p className="text-gray-600 mb-2">
-          Drag and drop files here, or click to browse
-        </p>
-        <input
-          type="file"
-          multiple
-          accept={acceptedTypes.join(",")}
-          onChange={(e) => handleFiles(Array.from(e.target.files || []))}
-          className="hidden"
-          id="file-upload"
-        />
-        <label htmlFor="file-upload" className="cursor-pointer">
-          <Button type="button" variant="outline" className="mt-2">
-            Choose Files
-          </Button>
-        </label>
-      </div>
-
-      {files.length > 0 && (
-        <div className="space-y-2">
-          {files.map((file, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-between p-2 bg-gray-50 rounded"
-            >
-              <span className="text-sm">{file.name}</span>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => removeFile(index)}
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 interface OrderForm {
   title: string;
@@ -531,15 +426,17 @@ export default function NewOrderPage() {
                   <Label>Design Files *</Label>
                   <div className="mt-2">
                     <FileUpload
-                      onFilesChange={handleFileUpload}
+                      onFilesUploaded={handleFileUpload}
                       maxFiles={5}
                       acceptedTypes={[
-                        "image/*",
-                        ".pdf",
-                        ".stl",
-                        ".step",
-                        ".dwg",
-                        ".dxf",
+                        "image/jpeg",
+                        "image/jpg", 
+                        "image/png",
+                        "image/gif",
+                        "image/webp",
+                        "application/pdf",
+                        "model/stl",
+                        "application/octet-stream",
                       ]}
                     />
                   </div>

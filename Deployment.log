@@ -43,589 +43,554 @@ Show Debug Logs
 Deployment is Failed.
 
 
-2025-Oct-05 15:05:39.244557
-Starting deployment of devYahia/NovaFab:master to localhost.
-2025-Oct-05 15:05:40.152961
+2025-Oct-05 18:17:15.120181
+Starting deployment of devYahia/NovaFab:main to localhost.
+2025-Oct-05 18:17:16.011635
 Preparing container with helper image: ghcr.io/coollabsio/coolify-helper:1.0.11.
-2025-Oct-05 15:05:43.656135
+2025-Oct-05 18:17:19.758228
 ----------------------------------------
-2025-Oct-05 15:05:43.673893
-Importing devYahia/NovaFab:master (commit sha HEAD) to /artifacts/cwkwc8gososcgws0ggk80k0c.
-2025-Oct-05 15:05:47.198438
-Image not found (kgoc40so00cs4w8ksc8o04kg:56e09573c3bf23c5a513b9e5974a626ff278a0a2). Building new image.
-2025-Oct-05 15:05:51.101074
+2025-Oct-05 18:17:19.773889
+Importing devYahia/NovaFab:main (commit sha HEAD) to /artifacts/s04cs04sgkggo0k0kcgws04k.
+2025-Oct-05 18:17:23.428721
+Image not found (kgoc40so00cs4w8ksc8o04kg:bc8d3dc7fb8f2eadc77261e4c1511354b7071090). Building new image.
+2025-Oct-05 18:17:27.458963
 ----------------------------------------
-2025-Oct-05 15:05:51.115144
+2025-Oct-05 18:17:27.474969
 ⚠️ Build-time environment variable warning: NODE_ENV=production
-2025-Oct-05 15:05:51.126819
+2025-Oct-05 18:17:27.492545
 Affects: Node.js/npm/yarn/bun/pnpm
-2025-Oct-05 15:05:51.137949
+2025-Oct-05 18:17:27.511814
 Issue: Skips devDependencies installation which are often required for building (webpack, typescript, etc.)
-2025-Oct-05 15:05:51.147211
+2025-Oct-05 18:17:27.526430
 Recommendation: Uncheck "Available at Buildtime" or use "development" during build
-2025-Oct-05 15:05:51.156941
-2025-Oct-05 15:05:51.166048
+2025-Oct-05 18:17:27.553377
+2025-Oct-05 18:17:27.576125
 💡 Tips to resolve build issues:
-2025-Oct-05 15:05:51.177195
+2025-Oct-05 18:17:27.593198
 1. Set these variables as "Runtime only" in the environment variables settings
-2025-Oct-05 15:05:51.190715
+2025-Oct-05 18:17:27.619135
 2. Use different values for build-time (e.g., NODE_ENV=development for build)
-2025-Oct-05 15:05:51.204984
+2025-Oct-05 18:17:27.636566
 3. Consider using multi-stage Docker builds to separate build and runtime environments
-2025-Oct-05 15:05:52.520539
+2025-Oct-05 18:17:29.104403
 ----------------------------------------
-2025-Oct-05 15:05:52.535244
+2025-Oct-05 18:17:29.114966
 Building docker image started.
-2025-Oct-05 15:05:52.548649
+2025-Oct-05 18:17:29.126839
 To check the current progress, click on Show Debug Logs.
-2025-Oct-05 15:07:30.667928
+2025-Oct-05 18:19:00.154755
 Oops something is not okay, are you okay? 😢
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #0 building with "default" instance using docker driver
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #1 [internal] load build definition from Dockerfile
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #1 transferring dockerfile: 3.19kB done
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #1 DONE 0.0s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #2 [internal] load metadata for docker.io/library/node:18-alpine
-2025-Oct-05 15:07:30.687405
-#2 DONE 1.3s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+#2 DONE 0.2s
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #3 [internal] load .dockerignore
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #3 transferring context: 1.24kB done
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #3 DONE 0.0s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #4 [base 1/1] FROM docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e
-2025-Oct-05 15:07:30.687405
-#4 resolve docker.io/library/node:18-alpine@sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 0.0s done
-2025-Oct-05 15:07:30.687405
-#4 sha256:929b04d7c782f04f615cf785488fed452b6569f87c73ff666ad553a7554f0006 1.72kB / 1.72kB done
-2025-Oct-05 15:07:30.687405
-#4 sha256:ee77c6cd7c1886ecc802ad6cedef3a8ec1ea27d1fb96162bf03dd3710839b8da 6.18kB / 6.18kB done
-2025-Oct-05 15:07:30.687405
-#4 sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e 7.67kB / 7.67kB done
-2025-Oct-05 15:07:30.687405
-#4 DONE 0.1s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
-#5 [internal] load build context
-2025-Oct-05 15:07:30.687405
-#5 transferring context: 998.94kB 0.0s done
-2025-Oct-05 15:07:30.687405
-#5 DONE 0.1s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
-#6 [builder 1/5] WORKDIR /app
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+#4 CACHED
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
+#5 [builder 1/5] WORKDIR /app
+2025-Oct-05 18:19:00.167085
+#5 CACHED
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
+#6 [internal] load build context
+2025-Oct-05 18:19:00.167085
+#6 transferring context: 999.60kB 0.1s done
+2025-Oct-05 18:19:00.167085
 #6 DONE 0.1s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
-#7 [deps 1/4] RUN apk add --no-cache libc6-compat
-2025-Oct-05 15:07:30.687405
-#7 0.183 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
-2025-Oct-05 15:07:30.687405
-#7 ...
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
-#8 [runner  2/10] RUN addgroup --system --gid 1001 nodejs
-2025-Oct-05 15:07:30.687405
-#8 DONE 0.2s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
-#7 [deps 1/4] RUN apk add --no-cache libc6-compat
-2025-Oct-05 15:07:30.687405
-#7 0.346 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
-2025-Oct-05 15:07:30.687405
-#7 ...
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
+#7 [runner  2/10] RUN addgroup --system --gid 1001 nodejs
+2025-Oct-05 18:19:00.167085
+#7 DONE 0.2s
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
+#8 [deps 1/4] RUN apk add --no-cache libc6-compat
+2025-Oct-05 18:19:00.167085
+#8 0.139 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+2025-Oct-05 18:19:00.167085
+#8 0.287 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+2025-Oct-05 18:19:00.167085
+#8 ...
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #9 [runner  3/10] RUN adduser --system --uid 1001 nextjs
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #9 DONE 0.2s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
-#7 [deps 1/4] RUN apk add --no-cache libc6-compat
-2025-Oct-05 15:07:30.687405
-#7 1.029 (1/3) Installing musl-obstack (1.2.3-r2)
-2025-Oct-05 15:07:30.687405
-#7 1.063 (2/3) Installing libucontext (1.3.2-r0)
-2025-Oct-05 15:07:30.687405
-#7 1.071 (3/3) Installing gcompat (1.1.0-r4)
-2025-Oct-05 15:07:30.687405
-#7 1.089 OK: 10 MiB in 20 packages
-2025-Oct-05 15:07:30.687405
-#7 DONE 1.3s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
+#8 [deps 1/4] RUN apk add --no-cache libc6-compat
+2025-Oct-05 18:19:00.167085
+#8 0.961 (1/3) Installing musl-obstack (1.2.3-r2)
+2025-Oct-05 18:19:00.167085
+#8 0.986 (2/3) Installing libucontext (1.3.2-r0)
+2025-Oct-05 18:19:00.167085
+#8 0.993 (3/3) Installing gcompat (1.1.0-r4)
+2025-Oct-05 18:19:00.167085
+#8 1.012 OK: 10 MiB in 20 packages
+2025-Oct-05 18:19:00.167085
+#8 DONE 1.2s
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #10 [deps 2/4] WORKDIR /app
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #10 DONE 0.0s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #11 [deps 3/4] COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #11 DONE 0.1s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #12 [deps 4/4] RUN   if [ -f yarn.lock ]; then yarn --frozen-lockfile;   elif [ -f package-lock.json ]; then npm ci;   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile;   else echo "Lockfile not found." && exit 1;   fi
-2025-Oct-05 15:07:30.687405
-#12 36.01
-2025-Oct-05 15:07:30.687405
-#12 36.01 added 489 packages, and audited 490 packages in 36s
-2025-Oct-05 15:07:30.687405
-#12 36.01
-2025-Oct-05 15:07:30.687405
-#12 36.01 155 packages are looking for funding
-2025-Oct-05 15:07:30.687405
-#12 36.01   run `npm fund` for details
-2025-Oct-05 15:07:30.687405
-#12 36.01
-2025-Oct-05 15:07:30.687405
-#12 36.01 found 0 vulnerabilities
-2025-Oct-05 15:07:30.687405
-#12 36.01 npm notice
-2025-Oct-05 15:07:30.687405
-#12 36.01 npm notice New major version of npm available! 10.8.2 -> 11.6.1
-2025-Oct-05 15:07:30.687405
-#12 36.01 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
-2025-Oct-05 15:07:30.687405
-#12 36.01 npm notice To update run: npm install -g npm@11.6.1
-2025-Oct-05 15:07:30.687405
-#12 36.01 npm notice
-2025-Oct-05 15:07:30.687405
-#12 DONE 37.0s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+#12 38.11
+2025-Oct-05 18:19:00.167085
+#12 38.11 added 489 packages, and audited 490 packages in 38s
+2025-Oct-05 18:19:00.167085
+#12 38.11
+2025-Oct-05 18:19:00.167085
+#12 38.11 155 packages are looking for funding
+2025-Oct-05 18:19:00.167085
+#12 38.11   run `npm fund` for details
+2025-Oct-05 18:19:00.167085
+#12 38.11
+2025-Oct-05 18:19:00.167085
+#12 38.11 found 0 vulnerabilities
+2025-Oct-05 18:19:00.167085
+#12 38.12 npm notice
+2025-Oct-05 18:19:00.167085
+#12 38.12 npm notice New major version of npm available! 10.8.2 -> 11.6.1
+2025-Oct-05 18:19:00.167085
+#12 38.12 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
+2025-Oct-05 18:19:00.167085
+#12 38.12 npm notice To update run: npm install -g npm@11.6.1
+2025-Oct-05 18:19:00.167085
+#12 38.12 npm notice
+2025-Oct-05 18:19:00.167085
+#12 DONE 39.2s
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #13 [builder 2/5] COPY --from=deps /app/node_modules ./node_modules
-2025-Oct-05 15:07:30.687405
-#13 DONE 10.5s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+#13 CACHED
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #14 [builder 3/5] COPY . .
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 #14 DONE 0.1s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #15 [builder 4/5] RUN npx prisma generate
-2025-Oct-05 15:07:30.687405
-#15 3.058 warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
-2025-Oct-05 15:07:30.687405
-#15 3.058 For more information, see: https://pris.ly/prisma-config
-2025-Oct-05 15:07:30.687405
-#15 3.058
-2025-Oct-05 15:07:30.687405
-#15 3.194 Prisma schema loaded from prisma/schema.prisma
-2025-Oct-05 15:07:30.687405
-#15 4.447
-2025-Oct-05 15:07:30.687405
-#15 4.447 ✔ Generated Prisma Client (v6.16.3) to ./node_modules/@prisma/client in 298ms
-2025-Oct-05 15:07:30.687405
-#15 4.447
-2025-Oct-05 15:07:30.687405
-#15 4.447 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
-2025-Oct-05 15:07:30.687405
-#15 4.447
-2025-Oct-05 15:07:30.687405
-#15 4.447 Tip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate
-2025-Oct-05 15:07:30.687405
-#15 4.447
-2025-Oct-05 15:07:30.687405
-#15 4.508 npm notice
-2025-Oct-05 15:07:30.687405
-#15 4.508 npm notice New major version of npm available! 10.8.2 -> 11.6.1
-2025-Oct-05 15:07:30.687405
-#15 4.508 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
-2025-Oct-05 15:07:30.687405
-#15 4.508 npm notice To update run: npm install -g npm@11.6.1
-2025-Oct-05 15:07:30.687405
-#15 4.508 npm notice
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+#15 3.149 warn The configuration property `package.json#prisma` is deprecated and will be removed in Prisma 7. Please migrate to a Prisma config file (e.g., `prisma.config.ts`).
+2025-Oct-05 18:19:00.167085
+#15 3.149 For more information, see: https://pris.ly/prisma-config
+2025-Oct-05 18:19:00.167085
+#15 3.149
+2025-Oct-05 18:19:00.167085
+#15 3.343 Prisma schema loaded from prisma/schema.prisma
+2025-Oct-05 18:19:00.167085
+#15 4.517
+2025-Oct-05 18:19:00.167085
+#15 4.517 ✔ Generated Prisma Client (v6.16.3) to ./node_modules/@prisma/client in 301ms
+2025-Oct-05 18:19:00.167085
+#15 4.517
+2025-Oct-05 18:19:00.167085
+#15 4.517 Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2025-Oct-05 18:19:00.167085
+#15 4.517
+2025-Oct-05 18:19:00.167085
+#15 4.517 Tip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate
+2025-Oct-05 18:19:00.167085
+#15 4.517
+2025-Oct-05 18:19:00.167085
+#15 4.580 npm notice
+2025-Oct-05 18:19:00.167085
+#15 4.580 npm notice New major version of npm available! 10.8.2 -> 11.6.1
+2025-Oct-05 18:19:00.167085
+#15 4.580 npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.1
+2025-Oct-05 18:19:00.167085
+#15 4.580 npm notice To update run: npm install -g npm@11.6.1
+2025-Oct-05 18:19:00.167085
+#15 4.580 npm notice
+2025-Oct-05 18:19:00.167085
 #15 DONE 4.6s
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 #16 [builder 5/5] RUN   if [ -f yarn.lock ]; then yarn run build;   elif [ -f package-lock.json ]; then npm run build;   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build;   else echo "Lockfile not found." && exit 1;   fi
-2025-Oct-05 15:07:30.687405
-#16 0.504
-2025-Oct-05 15:07:30.687405
-#16 0.504 > novafab-platform@0.1.0 build
-2025-Oct-05 15:07:30.687405
-#16 0.504 > next build
-2025-Oct-05 15:07:30.687405
-#16 0.504
-2025-Oct-05 15:07:30.687405
-#16 2.075    ▲ Next.js 15.5.4
-2025-Oct-05 15:07:30.687405
-#16 2.075
-2025-Oct-05 15:07:30.687405
-#16 2.160    Creating an optimized production build ...
-2025-Oct-05 15:07:30.687405
-#16 29.04  ✓ Compiled successfully in 26.3s
-2025-Oct-05 15:07:30.687405
-#16 29.05    Linting and checking validity of types ...
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 Failed to compile.
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/about/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 13:3  Warning: 'Eye' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 256:54  Error: `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/customers/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 9:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 24:3  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 25:3  Warning: 'Building' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 26:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 27:3  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 28:3  Warning: 'Package' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 34:3  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 35:3  Warning: 'Clock' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 220:21  Warning: 'setCustomers' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 284:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 285:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/dashboard/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 17:3  Warning: 'Package' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/gallery/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 10:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 27:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 32:3  Warning: 'Upload' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 249:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 250:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 273:9  Warning: 'togglePublic' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 281:9  Warning: 'toggleFeatured' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/login/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 31:9  Warning: 'router' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 47:16  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 94:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/orders/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 9:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 23:3  Warning: 'Trash2' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 25:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 28:3  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 180:30  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 501:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 502:17  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 530:9  Warning: 'handleStatusChange' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 538:9  Warning: 'handleAssignOrder' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 24:3  Warning: 'XCircle' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 28:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/admin/settings/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 15:10  Warning: 'Separator' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 21:3  Warning: 'Upload' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 23:3  Warning: 'Database' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 29:3  Warning: 'Users' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 30:3  Warning: 'FileText' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 31:3  Warning: 'Palette' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 33:3  Warning: 'Key' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 38:3  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 39:3  Warning: 'Truck' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 41:3  Warning: 'Cloud' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 42:3  Warning: 'Lock' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 151:18  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 209:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 216:12  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/api/auth/admin-login/route.ts
-2025-Oct-05 15:07:30.687405
-#16 36.04 2:8  Warning: 'bcrypt' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/api/auth/logout/route.ts
-2025-Oct-05 15:07:30.687405
-#16 36.04 3:28  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/api/health/route.ts
-2025-Oct-05 15:07:30.687405
-#16 36.04 4:27  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 81:28  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 86:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/contact/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 5:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 17:3  Warning: 'MessageSquare' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/dashboard/orders/[id]/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 21:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 23:3  Warning: 'Truck' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 149:3  Warning: 'params' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 182:9  Warning: 'getStatusIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 217:16  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/dashboard/orders/new/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 24:10  Warning: 'Checkbox' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 34:3  Warning: 'FileText' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 35:3  Warning: 'Settings' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 36:3  Warning: 'Truck' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 37:3  Warning: 'CreditCard' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 38:3  Warning: 'Check' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 40:3  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 41:3  Warning: 'Minus' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 159:10  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 234:10  Warning: 'estimatedCost' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 234:25  Warning: 'setEstimatedCost' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 257:52  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04 284:36  Error: Unexpected any. Specify a different type.  @typescript-eslint/no-explicit-any
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/dashboard/orders/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 9:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 34:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 118:18  Warning: 'setOrders' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/dashboard/profile/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 15:10  Warning: 'Textarea' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 21:3  Warning: 'Mail' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 22:3  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 24:3  Warning: 'Building' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 130:29  Warning: 'brand' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/app/gallery/page.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 11:46  Warning: 'Grid' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 11:52  Warning: 'List' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 230:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/components/ui/file-upload.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 265:16  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/components/ui/smart-logo.tsx
-2025-Oct-05 15:07:30.687405
-#16 36.04 49:16  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/lib/auth-edge.ts
-2025-Oct-05 15:07:30.687405
-#16 36.04 60:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/lib/auth.ts
-2025-Oct-05 15:07:30.687405
-#16 36.04 5:10  Warning: 'prisma' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 54:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 92:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 137:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 219:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 ./src/lib/cloudinary.ts
-2025-Oct-05 15:07:30.687405
-#16 36.04 110:11  Warning: 'relativeToUploads' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-#16 36.04 221:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
-2025-Oct-05 15:07:30.687405
-#16 36.04
-2025-Oct-05 15:07:30.687405
-#16 36.04 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+#16 0.421
+2025-Oct-05 18:19:00.167085
+#16 0.421 > novafab-platform@0.1.0 build
+2025-Oct-05 18:19:00.167085
+#16 0.421 > next build
+2025-Oct-05 18:19:00.167085
+#16 0.421
+2025-Oct-05 18:19:00.167085
+#16 2.313    ▲ Next.js 15.5.4
+2025-Oct-05 18:19:00.167085
+#16 2.314
+2025-Oct-05 18:19:00.167085
+#16 2.393    Creating an optimized production build ...
+2025-Oct-05 18:19:00.167085
+#16 31.38  ✓ Compiled successfully in 28.2s
+2025-Oct-05 18:19:00.167085
+#16 31.39    Linting and checking validity of types ...
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 Failed to compile.
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/about/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 13:3  Warning: 'Eye' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/customers/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 9:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 24:3  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 25:3  Warning: 'Building' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 26:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 27:3  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 28:3  Warning: 'Package' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 34:3  Warning: 'TrendingUp' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 35:3  Warning: 'Clock' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 220:21  Warning: 'setCustomers' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/dashboard/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 17:3  Warning: 'Package' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/gallery/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 10:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 27:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 32:3  Warning: 'Upload' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 273:9  Warning: 'togglePublic' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 281:9  Warning: 'toggleFeatured' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/login/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 31:9  Warning: 'router' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 47:16  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 94:14  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/orders/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 9:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 23:3  Warning: 'Trash2' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 25:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 28:3  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 551:9  Warning: 'handleStatusChange' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 559:9  Warning: 'handleAssignOrder' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 24:3  Warning: 'XCircle' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 28:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/admin/settings/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 15:10  Warning: 'Separator' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 21:3  Warning: 'Upload' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 23:3  Warning: 'Database' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 29:3  Warning: 'Users' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 30:3  Warning: 'FileText' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 31:3  Warning: 'Palette' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 33:3  Warning: 'Key' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 38:3  Warning: 'DollarSign' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 39:3  Warning: 'Truck' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 41:3  Warning: 'Cloud' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 42:3  Warning: 'Lock' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/api/auth/admin-login/route.ts
+2025-Oct-05 18:19:00.167085
+#16 38.53 2:8  Warning: 'bcrypt' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/api/auth/logout/route.ts
+2025-Oct-05 18:19:00.167085
+#16 38.53 3:28  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/api/health/route.ts
+2025-Oct-05 18:19:00.167085
+#16 38.53 4:27  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 81:28  Warning: 'request' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 86:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/contact/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 5:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 17:3  Warning: 'MessageSquare' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/dashboard/orders/[id]/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 3:20  Warning: 'useEffect' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 21:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 23:3  Warning: 'Truck' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 148:1  Warning: Prevent Client Components from being async functions. See: https://nextjs.org/docs/messages/no-async-client-component  @next/next/no-async-client-component
+2025-Oct-05 18:19:00.167085
+#16 38.53 153:11  Warning: 'id' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 154:29  Error: React Hook "useState" cannot be called in an async function.  react-hooks/rules-of-hooks
+2025-Oct-05 18:19:00.167085
+#16 38.53 155:39  Error: React Hook "useState" cannot be called in an async function.  react-hooks/rules-of-hooks
+2025-Oct-05 18:19:00.167085
+#16 38.53 183:9  Warning: 'getStatusIcon' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 218:16  Warning: Image elements must have an alt prop, either with meaningful text, or an empty string for decorative images.  jsx-a11y/alt-text
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/dashboard/orders/new/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 24:10  Warning: 'Checkbox' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 34:3  Warning: 'FileText' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 35:3  Warning: 'Settings' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 36:3  Warning: 'Truck' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 37:3  Warning: 'CreditCard' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 38:3  Warning: 'Check' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 40:3  Warning: 'Plus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 41:3  Warning: 'Minus' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 234:10  Warning: 'estimatedCost' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 234:25  Warning: 'setEstimatedCost' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/dashboard/orders/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 9:3  Warning: 'CardDescription' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 34:3  Warning: 'Calendar' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 118:18  Warning: 'setOrders' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/dashboard/profile/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 15:10  Warning: 'Textarea' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 21:3  Warning: 'Mail' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 22:3  Warning: 'Phone' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 24:3  Warning: 'Building' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 130:29  Warning: 'brand' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/app/gallery/page.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 11:46  Warning: 'Grid' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 11:52  Warning: 'List' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 230:19  Warning: Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/components/ui/file-upload.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 265:16  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/components/ui/smart-logo.tsx
+2025-Oct-05 18:19:00.167085
+#16 38.53 49:16  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/lib/auth-edge.ts
+2025-Oct-05 18:19:00.167085
+#16 38.53 60:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/lib/auth.ts
+2025-Oct-05 18:19:00.167085
+#16 38.53 5:10  Warning: 'prisma' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 54:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 92:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 137:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 219:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 ./src/lib/cloudinary.ts
+2025-Oct-05 18:19:00.167085
+#16 38.53 110:11  Warning: 'relativeToUploads' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+#16 38.53 221:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+2025-Oct-05 18:19:00.167085
+#16 38.53
+2025-Oct-05 18:19:00.167085
+#16 38.53 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+2025-Oct-05 18:19:00.167085
 #16 ERROR: process "/bin/sh -c if [ -f yarn.lock ]; then yarn run build;   elif [ -f package-lock.json ]; then npm run build;   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build;   else echo \"Lockfile not found.\" && exit 1;   fi" did not complete successfully: exit code: 1
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 ------
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 > [builder 5/5] RUN   if [ -f yarn.lock ]; then yarn run build;   elif [ -f package-lock.json ]; then npm run build;   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build;   else echo "Lockfile not found." && exit 1;   fi:
-2025-Oct-05 15:07:30.687405
-36.04 54:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-36.04 92:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-36.04 137:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-36.04 219:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-36.04
-2025-Oct-05 15:07:30.687405
-36.04 ./src/lib/cloudinary.ts
-2025-Oct-05 15:07:30.687405
-36.04 110:11  Warning: 'relativeToUploads' is assigned a value but never used.  @typescript-eslint/no-unused-vars
-2025-Oct-05 15:07:30.687405
-36.04 221:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
-2025-Oct-05 15:07:30.687405
-36.04
-2025-Oct-05 15:07:30.687405
-36.04 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+38.53 54:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+38.53 92:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+38.53 137:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+38.53 219:12  Warning: 'error' is defined but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+38.53
+2025-Oct-05 18:19:00.167085
+38.53 ./src/lib/cloudinary.ts
+2025-Oct-05 18:19:00.167085
+38.53 110:11  Warning: 'relativeToUploads' is assigned a value but never used.  @typescript-eslint/no-unused-vars
+2025-Oct-05 18:19:00.167085
+38.53 221:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+2025-Oct-05 18:19:00.167085
+38.53
+2025-Oct-05 18:19:00.167085
+38.53 info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/api-reference/config/eslint#disabling-rules
+2025-Oct-05 18:19:00.167085
 ------
-2025-Oct-05 15:07:30.687405
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
+2025-Oct-05 18:19:00.167085
 5 warnings found (use docker --debug to expand):
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 39)
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 56)
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 58)
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 82)
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 84)
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 Dockerfile:45
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 --------------------
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 44 |     # Build the application
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 45 | >>> RUN \
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 46 | >>>   if [ -f yarn.lock ]; then yarn run build; \
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 47 | >>>   elif [ -f package-lock.json ]; then npm run build; \
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 48 | >>>   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 49 | >>>   else echo "Lockfile not found." && exit 1; \
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 50 | >>>   fi
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 51 |
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 --------------------
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 ERROR: failed to build: failed to solve: process "/bin/sh -c if [ -f yarn.lock ]; then yarn run build;   elif [ -f package-lock.json ]; then npm run build;   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build;   else echo \"Lockfile not found.\" && exit 1;   fi" did not complete successfully: exit code: 1
-2025-Oct-05 15:07:30.687405
+2025-Oct-05 18:19:00.167085
 exit status 1
-2025-Oct-05 15:07:30.707298
+2025-Oct-05 18:19:00.183908
 Deployment failed. Removing the new version of your application.
-2025-Oct-05 15:07:32.553865
-Gracefully shutting down build container: cwkwc8gososcgws0ggk80k0c
+2025-Oct-05 18:19:02.125067
+Gracefully shutting down build container: s04cs04sgkggo0k0kcgws04k

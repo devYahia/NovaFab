@@ -527,7 +527,7 @@ export default function AdminOrdersPage() {
       bValue = b.customer.name;
     }
 
-    if (typeof aValue === "string") {
+    if (typeof aValue === "string" && typeof bValue === "string") {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
     }

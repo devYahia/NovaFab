@@ -145,14 +145,18 @@ const mockOrder = {
   ],
 };
 
-export default async function OrderDetailsPage({
+export default function OrderDetailsPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const [id, setId] = useState<string>("");
   const [order, setOrder] = useState(mockOrder);
   const [newMessage, setNewMessage] = useState("");
+
+  useEffect(() => {
+    params.then(({ id }) => setId(id));
+  }, [params]);
 
   const getStatusColor = (status: string) => {
     switch (status) {

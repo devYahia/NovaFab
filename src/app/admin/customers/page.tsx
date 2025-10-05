@@ -284,7 +284,7 @@ export default function AdminCustomersPage() {
     let aValue: string | number = a[sortBy as keyof typeof a] as string | number;
     let bValue: string | number = b[sortBy as keyof typeof b] as string | number;
 
-    if (typeof aValue === "string") {
+    if (typeof aValue === "string" && typeof bValue === "string") {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
     }

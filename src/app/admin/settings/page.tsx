@@ -206,7 +206,7 @@ export default function AdminSettingsPage() {
   const handleInputChange = (
     section: keyof Settings,
     field: string,
-    value: string | number | boolean,
+    value: string | number | boolean | object,
   ) => {
     setSettings((prev) => ({
       ...prev,
@@ -666,7 +666,7 @@ export default function AdminSettingsPage() {
                         <div className="relative">
                           <Input
                             type={showApiKeys ? "text" : "password"}
-                            value={config.publishableKey}
+                            value={String(config.publishableKey)}
                             readOnly
                           />
                           <Button
@@ -692,7 +692,7 @@ export default function AdminSettingsPage() {
                         <div className="relative">
                           <Input
                             type={showApiKeys ? "text" : "password"}
-                            value={config.apiKey}
+                            value={String(config.apiKey)}
                             readOnly
                           />
                           <Button
@@ -715,7 +715,7 @@ export default function AdminSettingsPage() {
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Tracking ID
                         </label>
-                        <Input value={config.trackingId} readOnly />
+                        <Input value={String(config.trackingId)} readOnly />
                       </div>
                     )}
                     <div className="flex space-x-2">

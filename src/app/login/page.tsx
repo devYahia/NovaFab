@@ -123,7 +123,7 @@ function LoginForm() {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="Enter your email"
+                  placeholder="ahmed.mohamed@gmail.com"
                   className="mt-1"
                 />
               </div>

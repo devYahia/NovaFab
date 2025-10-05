@@ -160,7 +160,7 @@ export default function AdminLogin() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className="bg-black/50 border-red-500/50 text-white placeholder-red-300/50 text-left pl-10 focus:border-red-400 focus:ring-red-400"
-                  placeholder="admin@novafab.com"
+                  placeholder="admin@gmail.com"
                   dir="ltr"
                 />
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 w-4 h-4" />

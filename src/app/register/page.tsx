@@ -221,7 +221,7 @@ export default function RegisterPage() {
                     required
                     value={formData.firstName}
                     onChange={handleInputChange}
-                    placeholder="John"
+                    placeholder="Ahmed"
                     className="mt-1"
                   />
                 </div>
@@ -235,7 +235,7 @@ export default function RegisterPage() {
                     required
                     value={formData.lastName}
                     onChange={handleInputChange}
-                    placeholder="Doe"
+                    placeholder="Mohamed"
                     className="mt-1"
                   />
                 </div>
@@ -251,7 +251,7 @@ export default function RegisterPage() {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="john@example.com"
+                  placeholder="ahmed.mohamed@gmail.com"
                   className="mt-1"
                 />
               </div>
@@ -265,7 +265,7 @@ export default function RegisterPage() {
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="+1 (555) 123-4567"
+                  placeholder="+20 10 1234 5678"
                   className="mt-1"
                 />
               </div>

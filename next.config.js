@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Output configuration for Docker deployment
-  output: 'standalone',
+  // output: 'standalone', // Temporarily disabled for Coolify compatibility
   
   // ESLint configuration - ignore warnings during build
   eslint: {

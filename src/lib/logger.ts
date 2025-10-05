@@ -5,7 +5,7 @@ interface LogEntry {
   level: LogLevel;
   message: string;
   context?: string;
-  data?: any;
+  data?: unknown;
   userId?: string;
   sessionId?: string;
 }
@@ -45,7 +45,7 @@ class Logger {
     level: LogLevel,
     message: string,
     context?: string,
-    data?: any,
+    data?: unknown,
     userId?: string,
     sessionId?: string
   ): LogEntry {
@@ -60,28 +60,25 @@ class Logger {
     };
   }
 
-  debug(message: string, context?: string, data?: any, userId?: string, sessionId?: string) {
+  debug(message: string, context?: string, data?: unknown, userId?: string, sessionId?: string) {
     if (!this.shouldLog('debug')) return;
-    
     const entry = this.createLogEntry('debug', message, context, data, userId, sessionId);
-    console.debug(this.formatLog(entry));
+    console.log(this.formatLog(entry));
   }
 
-  info(message: string, context?: string, data?: any, userId?: string, sessionId?: string) {
+  info(message: string, context?: string, data?: unknown, userId?: string, sessionId?: string) {
     if (!this.shouldLog('info')) return;
-    
     const entry = this.createLogEntry('info', message, context, data, userId, sessionId);
-    console.info(this.formatLog(entry));
+    console.log(this.formatLog(entry));
   }
 
-  warn(message: string, context?: string, data?: any, userId?: string, sessionId?: string) {
+  warn(message: string, context?: string, data?: unknown, userId?: string, sessionId?: string) {
     if (!this.shouldLog('warn')) return;
-    
     const entry = this.createLogEntry('warn', message, context, data, userId, sessionId);
     console.warn(this.formatLog(entry));
   }
 
-  error(message: string, context?: string, error?: any, userId?: string, sessionId?: string) {
+  error(message: string, context?: string, error?: unknown, userId?: string, sessionId?: string) {
     if (!this.shouldLog('error')) return;
     
     const errorData = error instanceof Error 
@@ -104,32 +101,26 @@ class Logger {
     this[level](message, 'API', { method, path, status, duration }, userId);
   }
 
-  auth(action: string, userId?: string, success: boolean = true, details?: any) {
-    const message = `Auth ${action} ${success ? 'successful' : 'failed'}`;
-    const level = success ? 'info' : 'warn';
-    
-    this[level](message, 'AUTH', { action, success, ...details }, userId);
+  auth(action: string, userId?: string, success: boolean = true, details?: unknown) {
+    const message = `Auth ${action}: ${success ? 'SUCCESS' : 'FAILED'}`;
+    this.info(message, 'AUTH', details, userId);
   }
 
-  upload(fileName: string, fileSize: number, success: boolean, userId?: string, error?: any) {
-    const message = `File upload ${success ? 'successful' : 'failed'}: ${fileName} (${fileSize} bytes)`;
-    const level = success ? 'info' : 'error';
-    
-    this[level](message, 'UPLOAD', { fileName, fileSize, success, error }, userId);
+  upload(fileName: string, fileSize: number, success: boolean, userId?: string, error?: unknown) {
+    const message = `File upload: ${fileName} (${fileSize} bytes) - ${success ? 'SUCCESS' : 'FAILED'}`;
+    this[success ? 'info' : 'error'](message, 'UPLOAD', error, userId);
   }
 
-  database(operation: string, table: string, success: boolean, duration?: number, error?: any) {
-    const message = `DB ${operation} on ${table} ${success ? 'successful' : 'failed'}${duration ? ` (${duration}ms)` : ''}`;
-    const level = success ? 'debug' : 'error';
-    
-    this[level](message, 'DATABASE', { operation, table, success, duration, error });
+  database(operation: string, table: string, success: boolean, duration?: number, error?: unknown) {
+    const message = `DB ${operation} on ${table}: ${success ? 'SUCCESS' : 'FAILED'}${duration ? ` (${duration}ms)` : ''}`;
+    this[success ? 'info' : 'error'](message, 'DATABASE', error);
   }
 
-  security(event: string, severity: 'low' | 'medium' | 'high', details?: any, userId?: string) {
+  security(event: string, severity: 'low' | 'medium' | 'high', details?: unknown, userId?: string) {
     const message = `Security event: ${event} (${severity} severity)`;
     const level = severity === 'high' ? 'error' : severity === 'medium' ? 'warn' : 'info';
     
-    this[level](message, 'SECURITY', { event, severity, ...details }, userId);
+    this[level](message, 'SECURITY', { event, severity, details }, userId);
   }
 }
 

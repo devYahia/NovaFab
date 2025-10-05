@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -14,7 +13,6 @@ import {
   Phone,
   Mail,
   Clock,
-  MessageSquare,
   Factory,
 } from "lucide-react";
 

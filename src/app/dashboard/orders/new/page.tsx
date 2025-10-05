@@ -43,6 +43,18 @@ import {
 // File Upload Component
 
 
+interface UploadedFile {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url: string;
+  public_id: string;
+  status: "uploading" | "success" | "error";
+  progress: number;
+  error?: string;
+}
+
 interface OrderForm {
   title: string;
   description: string;
@@ -51,7 +63,7 @@ interface OrderForm {
   quantity: number;
   urgency: string;
   notes: string;
-  files: any[];
+  files: UploadedFile[];
   specifications: {
     dimensions: string;
     tolerance: string;
@@ -149,15 +161,15 @@ export default function NewOrderPage() {
     return totalCost;
   };
 
-  const handleInputChange = (field: string, value: any) => {
-    setFormData((prev) => ({
+  const handleInputChange = (field: string, value: string | number) => {
+    setFormData((prev: OrderForm) => ({
       ...prev,
       [field]: value,
     }));
   };
 
   const handleSpecificationChange = (field: string, value: string) => {
-    setFormData((prev) => ({
+    setFormData((prev: OrderForm) => ({
       ...prev,
       specifications: {
         ...prev.specifications,
@@ -167,7 +179,7 @@ export default function NewOrderPage() {
   };
 
   const handleShippingChange = (field: string, value: string) => {
-    setFormData((prev) => ({
+    setFormData((prev: OrderForm) => ({
       ...prev,
       shipping: {
         ...prev.shipping,
@@ -176,8 +188,8 @@ export default function NewOrderPage() {
     }));
   };
 
-  const handleFileUpload = (files: any[]) => {
-    setFormData((prev) => ({
+  const handleFileUpload = (files: UploadedFile[]) => {
+    setFormData((prev: OrderForm) => ({
       ...prev,
       files: files,
     }));

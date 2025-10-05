@@ -38,6 +38,9 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+# Verify standalone build was created
+RUN ls -la .next/ && ls -la .next/standalone/ || echo "Standalone build not found"
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
@@ -58,6 +61,7 @@ RUN chown nextjs:nodejs .next
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone/ ./
+# Copy static files
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 # Copy Prisma schema and generated client

@@ -90,6 +90,11 @@ const mockSettings = {
     monthlyReports: true,
   },
   integrations: {
+    cloudinary: {
+      enabled: true,
+      cloudName: "novafab-cloud",
+      status: "connected",
+    },
     stripe: {
       enabled: true,
       publishableKey: "pk_test_...",
@@ -349,8 +354,8 @@ export default function AdminSettingsPage() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="USD">USD ($)</option>
-                <option value="EUR">EUR (â‚¬)</option>
-                <option value="GBP">GBP (Â£)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="GBP">GBP (£)</option>
                 <option value="CAD">CAD (C$)</option>
               </select>
             </div>
@@ -622,7 +627,9 @@ export default function AdminSettingsPage() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-3">
                     <div className="p-2 bg-gray-100 rounded">
-                      
+                      {service === "cloudinary" && (
+                        <Cloud className="h-5 w-5" />
+                      )}
                       {service === "stripe" && (
                         <CreditCard className="h-5 w-5" />
                       )}
@@ -632,7 +639,8 @@ export default function AdminSettingsPage() {
                     <div>
                       <h4 className="font-medium capitalize">{service}</h4>
                       <p className="text-sm text-gray-600">
-                        
+                        {service === "cloudinary" &&
+                          "Image and file storage service"}
                         {service === "stripe" && "Payment processing platform"}
                         {service === "sendgrid" && "Email delivery service"}
                         {service === "analytics" &&
@@ -658,6 +666,14 @@ export default function AdminSettingsPage() {
 
                 {config.enabled && (
                   <div className="space-y-3">
+                    {service === "cloudinary" && (
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          Cloud Name
+                        </label>
+                        <Input value={config.cloudName} readOnly />
+                      </div>
+                    )}
                     {service === "stripe" && (
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">

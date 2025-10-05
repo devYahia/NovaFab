@@ -1,188 +1,231 @@
-# NovaFab - Digital Manufacturing Platform
+# Novafab Platform
 
-A comprehensive digital manufacturing and 3D printing service platform built with Next.js 15, featuring customer order management, admin dashboard, and file upload capabilities.
+A comprehensive service management platform designed for modern businesses. Built with Next.js 15 and TypeScript, Novafab provides a complete solution for service ordering, customer management, and business administration.
 
-## 🚀 Features
+## Overview
 
-### Customer Features
+Novafab is a full-stack web application that enables businesses to showcase their services, manage customer orders, and streamline operations through an intuitive admin interface. The platform features secure authentication, real-time order tracking, and a responsive design that works seamlessly across all devices.
 
-- **User Registration & Authentication** - Secure account creation and login
-- **Service Browsing** - Explore 3D printing, laser cutting, CNC machining services
-- **Order Management** - Place orders, track progress, view history
-- **File Upload** - Upload design files with drag-and-drop interface
-- **Profile Management** - Update personal information and preferences
-- **Order Tracking** - Real-time status updates and notifications
+## Key Features
 
-### Admin Features
+### For Customers
+- **Service Catalog**: Browse and explore available services with detailed descriptions
+- **Secure Ordering**: Place orders with integrated payment processing
+- **User Dashboard**: Track order status and manage account settings
+- **Gallery**: View portfolio and previous work examples
+- **Contact System**: Direct communication with service providers
 
-- **Admin Dashboard** - Comprehensive overview of orders and customers
-- **Order Management** - View, update, and track all customer orders
-- **Customer Management** - Manage customer accounts and information
-- **Gallery Management** - Upload and manage portfolio images
-- **Receipt Generation** - Print professional order receipts
-- **Settings Panel** - Configure system settings and preferences
+### For Administrators
+- **Order Management**: Complete order lifecycle management
+- **Service Administration**: Add, edit, and manage service offerings
+- **Customer Management**: User account administration and support
+- **Analytics Dashboard**: Business insights and performance metrics
+- **Content Management**: Update gallery, reviews, and site content
 
 ### Technical Features
+- **Modern Architecture**: Built with Next.js 15 and React 18
+- **Type Safety**: Full TypeScript implementation
+- **Database Integration**: PostgreSQL with Prisma ORM
+- **Authentication**: Secure JWT-based authentication with NextAuth.js
+- **File Management**: Cloudinary integration for image uploads
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **Component Library**: shadcn/ui for consistent UI components
 
-- **Responsive Design** - Mobile-first approach with modern UI
-- **File Upload System** - Local file storage with validation
-- **Authentication System** - JWT-based secure authentication
-- **Database Integration** - SQLite with Prisma ORM
-- **Real-time Updates** - Dynamic content updates
-- **Print Functionality** - Generate and print order receipts
+## Technology Stack
 
-## 🛠️ Tech Stack
+### Frontend
+- **Framework**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Components**: shadcn/ui, Radix UI
+- **State Management**: React Context API
+- **Forms**: React Hook Form with Zod validation
 
-- **Frontend**: Next.js 15, React 18, TypeScript
-- **Styling**: Tailwind CSS, shadcn/ui components
-- **Backend**: Next.js API Routes
-- **Database**: SQLite with Prisma ORM
-- **Authentication**: JWT tokens
-- **File Upload**: Local file system storage
-- **Icons**: Lucide React
-- **Deployment**: Docker support included
+### Backend
+- **Runtime**: Node.js 18+
+- **API**: Next.js API Routes
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **Authentication**: NextAuth.js
+- **File Storage**: Cloudinary
+- **Email**: SMTP integration
 
-## 📋 Prerequisites
+### Development & Deployment
+- **Package Manager**: npm
+- **Linting**: ESLint with TypeScript rules
+- **Containerization**: Docker with multi-stage builds
+- **Deployment**: Optimized for Coolify platform
+- **Monitoring**: Built-in health checks and logging
 
-- Node.js 18+
-- npm or yarn
-- Git
+## Getting Started
 
-## 🚀 Quick Start
+### Prerequisites
+
+Before running this project, ensure you have:
+
+- **Node.js** 18.0 or higher
+- **npm** 9.0 or higher
+- **PostgreSQL** 14.0 or higher (for production)
+- **Git** for version control
+
+### Local Development Setup
 
 1. **Clone the repository**
-
    ```bash
-   git clone https://github.com/yourusername/novafab.git
+   git clone https://github.com/your-username/novafab.git
    cd novafab
    ```
 
 2. **Install dependencies**
-
    ```bash
    npm install
    ```
 
-3. **Set up environment variables**
-
+3. **Environment configuration**
    ```bash
    cp .env.example .env
    ```
-
-   Update the `.env` file with your configuration:
-
+   
+   Configure the following required variables in your `.env` file:
    ```env
-   DATABASE_URL="file:./dev.db"
-   JWT_SECRET="your-jwt-secret-key"
-   NEXT_PUBLIC_APP_URL="http://localhost:3000"
-   ADMIN_EMAIL="admin@novafab.com"
-   ADMIN_PASSWORD="change-this-password"
+   DATABASE_URL="postgresql://username:password@localhost:5432/novafab"
+   NEXTAUTH_SECRET="your-secure-secret-key"
+   NEXTAUTH_URL="http://localhost:3000"
+   CLOUDINARY_CLOUD_NAME="your-cloudinary-name"
+   CLOUDINARY_API_KEY="your-api-key"
+   CLOUDINARY_API_SECRET="your-api-secret"
    ```
 
-4. **Set up the database**
-
+4. **Database setup**
    ```bash
+   npx prisma generate
    npx prisma db push
    npx prisma db seed
    ```
 
-5. **Start the development server**
-
+5. **Start development server**
    ```bash
    npm run dev
    ```
 
-6. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+6. **Access the application**
+   - Frontend: http://localhost:3000
+   - Admin Panel: http://localhost:3000/admin
+   - API Health Check: http://localhost:3000/api/health
 
-## 👥 Default Accounts
+### Default Admin Credentials
 
-### Admin Account
-
+After seeding the database, you can access the admin panel with:
 - **Email**: admin@novafab.com
-- **Password**: change-this-password
+- **Password**: admin123 (change immediately in production)
 
-### Customer Accounts
-
-- **Email**: omar.hassan@email.com | **Password**: password123
-- **Email**: fatima.ahmed@email.com | **Password**: password123
-- **Email**: mohamed.ali@email.com | **Password**: password123
-- **Email**: sara.mahmoud@email.com | **Password**: password123
-
-## 📁 Project Structure
+## Project Architecture
 
 ```
 novafab/
+├── prisma/                 # Database schema and migrations
+│   ├── migrations/         # Database migration files
+│   ├── schema.prisma      # Prisma schema definition
+│   └── seed.ts            # Database seeding script
+├── public/                # Static assets
+│   ├── uploads/           # User uploaded files
+│   └── *.svg             # Icon assets
 ├── src/
-│   ├── app/                    # Next.js app directory
-│   │   ├── admin/             # Admin panel pages
-│   │   ├── api/               # API routes
-│   │   ├── dashboard/         # Customer dashboard
-│   │   ├── services/          # Service pages
-│   │   └── ...
-│   ├── components/            # Reusable components
-│   │   └── ui/               # shadcn/ui components
-│   ├── lib/                  # Utility functions
-│   └── middleware.ts         # Authentication middleware
-├── prisma/                   # Database schema and migrations
-├── public/                   # Static assets
-├── .env.example             # Environment variables template
-├── docker-compose.yml       # Docker configuration
-└── README.md               # Project documentation
+│   ├── app/              # Next.js App Router pages
+│   │   ├── admin/        # Admin panel routes
+│   │   ├── api/          # API endpoints
+│   │   ├── dashboard/    # User dashboard
+│   │   ├── gallery/      # Portfolio gallery
+│   │   ├── services/     # Service catalog
+│   │   └── layout.tsx    # Root layout component
+│   ├── components/       # Reusable UI components
+│   │   └── ui/          # shadcn/ui components
+│   ├── lib/             # Utility functions and configurations
+│   │   ├── auth.ts      # Authentication configuration
+│   │   ├── prisma.ts    # Database client
+│   │   └── utils.ts     # Helper functions
+│   └── middleware.ts    # Route protection middleware
+├── Dockerfile           # Container configuration
+├── COOLIFY_DEPLOYMENT.md # Deployment guide
+└── package.json         # Project dependencies
 ```
 
-## 🔧 Available Scripts
+## API Documentation
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npx prisma studio` - Open Prisma database studio
-- `npx prisma db seed` - Seed database with sample data
+### Authentication Endpoints
+- `POST /api/auth/signin` - User authentication
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/signout` - User logout
 
-## 🐳 Docker Deployment
+### Service Management
+- `GET /api/services` - Retrieve all services
+- `POST /api/services` - Create new service (admin only)
+- `PUT /api/services/[id]` - Update service (admin only)
+- `DELETE /api/services/[id]` - Delete service (admin only)
 
-1. **Build and run with Docker Compose**
+### Order Management
+- `GET /api/orders` - Get user orders
+- `POST /api/orders` - Create new order
+- `PUT /api/orders/[id]` - Update order status (admin only)
 
-   ```bash
-   docker-compose up --build
-   ```
+### System Endpoints
+- `GET /api/health` - Application health check
+- `GET /api/stats` - System statistics (admin only)
 
-2. **Access the application**
-   - Application: http://localhost:3000
-   - Database: SQLite file in container
+## Environment Variables
 
-## 🌟 Key Pages
+### Required Variables
+```env
+# Database
+DATABASE_URL="postgresql://user:password@host:port/database"
 
-- **Homepage** (`/`) - Landing page with service overview
-- **Services** (`/services`) - Detailed service information
-- **Login** (`/login`) - Customer authentication
-- **Register** (`/register`) - New customer registration
-- **Dashboard** (`/dashboard`) - Customer order management
-- **Admin Login** (`/admin/login`) - Admin authentication
-- **Admin Dashboard** (`/admin/dashboard`) - Admin panel
-- **Gallery** (`/gallery`) - Portfolio showcase
-- **Contact** (`/contact`) - Contact information
+# Authentication
+NEXTAUTH_SECRET="your-secret-key"
+NEXTAUTH_URL="https://your-domain.com"
 
-## 🔒 Security Features
+# File Storage
+CLOUDINARY_CLOUD_NAME="your-cloud-name"
+CLOUDINARY_API_KEY="your-api-key"
+CLOUDINARY_API_SECRET="your-api-secret"
+```
 
-- JWT-based authentication
-- Password hashing with bcrypt
-- Input validation and sanitization
-- Protected routes with middleware
-- Secure file upload handling
-- Environment variable protection
+### Optional Variables
+```env
+# Email Configuration
+EMAIL_SERVER_HOST="smtp.gmail.com"
+EMAIL_SERVER_PORT="587"
+EMAIL_SERVER_USER="your-email@gmail.com"
+EMAIL_SERVER_PASSWORD="your-app-password"
 
-## 📱 Responsive Design
+# Payment Processing
+STRIPE_PUBLISHABLE_KEY="pk_live_..."
+STRIPE_SECRET_KEY="sk_live_..."
 
-The application is fully responsive and optimized for:
+# Monitoring
+SENTRY_DSN="your-sentry-dsn"
+```
 
-- Desktop computers
-- Tablets
-- Mobile phones
-- Various screen sizes and orientations
+## Deployment
 
-## 🤝 Contributing
+### Production Deployment with Coolify
+
+This application is optimized for deployment on Coolify. For detailed deployment instructions, see [COOLIFY_DEPLOYMENT.md](./COOLIFY_DEPLOYMENT.md).
+
+### Docker Deployment
+
+Build and run with Docker:
+
+```bash
+# Build the image
+docker build -t novafab .
+
+# Run the container
+docker run -p 3000:3000 --env-file .env novafab
+```
+
+## Contributing
+
+We welcome contributions to improve Novafab. Please follow these guidelines:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -190,19 +233,34 @@ The application is fully responsive and optimized for:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+### Development Guidelines
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Follow TypeScript best practices
+- Use conventional commit messages
+- Add tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting
 
-## 📞 Contact
+## Security
 
-- **Project Link**: [https://github.com/yourusername/novafab](https://github.com/yourusername/novafab)
-- **Demo**: [Live Demo Link](https://your-demo-link.com)
+- All user inputs are validated and sanitized
+- Authentication uses secure JWT tokens
+- Database queries use Prisma's built-in protection against SQL injection
+- File uploads are validated and processed securely
+- Environment variables are used for sensitive configuration
 
-## 🙏 Acknowledgments
+## Support
 
-- [Next.js](https://nextjs.org/) - React framework
-- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
-- [shadcn/ui](https://ui.shadcn.com/) - UI components
-- [Prisma](https://prisma.io/) - Database ORM
-- [Lucide](https://lucide.dev/) - Icon library
+For support and questions:
+
+- Create an issue on GitHub
+- Check the documentation in `/docs`
+- Review the deployment guide for common issues
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+---
+
+**Novafab Platform** - Streamlining service management for modern businesses.

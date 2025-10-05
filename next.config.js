@@ -1,23 +1,8 @@
-/** @type {import('next').NextConfig} */
+﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable standalone output for Docker deployment
-  output: "standalone",
-
   // Image optimization configuration
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "images.unsplash.com",
-      "via.placeholder.com",
-      "localhost",
-    ],
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "res.cloudinary.com",
-        port: "",
-        pathname: "/**",
-      },
       {
         protocol: "https",
         hostname: "images.unsplash.com",

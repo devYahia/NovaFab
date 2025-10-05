@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -32,7 +33,39 @@ const stats = {
   totalSpent: 0,
 };
 
+interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  role: string;
+}
+
 export default function Dashboard() {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  // Fetch user data
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch("/api/auth/me", {
+          credentials: "include",
+        });
+        if (response.ok) {
+          const userData = await response.json();
+          setUser(userData);
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   // Helper functions for styling
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -79,7 +112,15 @@ export default function Dashboard() {
       <div className="rounded-lg bg-white p-6 shadow">
         <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome back! 👋</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              {loading ? (
+                "Welcome back! 👋"
+              ) : user ? (
+                `Welcome back, ${user.firstName}! 👋`
+              ) : (
+                "Welcome back! 👋"
+              )}
+            </h1>
             <p className="text-gray-600">
               Here's what's happening with your orders today
             </p>

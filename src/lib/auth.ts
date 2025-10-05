@@ -99,28 +99,77 @@ export async function getUserFromToken(token: string): Promise<User | null> {
   const payload = await verifyToken(token);
   if (!payload) return null;
 
-  // Handle admin users
-  if (payload.role === "ADMIN") {
-    return {
-      id: payload.id || payload.userId || "",
-      email: payload.email,
-      firstName: "Admin",
-      lastName: "User",
-      role: "ADMIN" as const,
-      isActive: true,
-    };
-  }
+  try {
+    // Get the user ID from payload (handle both 'id' and 'userId' fields)
+    const userId = payload.id || payload.userId;
+    if (!userId) return null;
 
-  // Handle customer users
-  if (payload.role === "CUSTOMER") {
-    return {
-      id: payload.id || payload.userId || "",
-      email: payload.email,
-      firstName: "Registered",
-      lastName: "Customer",
-      role: "CUSTOMER" as const,
-      isActive: true,
-    };
+    // Fetch user from database
+    const dbUser = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        role: true,
+        isActive: true,
+      },
+    });
+
+    if (!dbUser) {
+      // Fallback to static data if user not found in database
+      if (payload.role === "ADMIN") {
+        return {
+          id: userId,
+          email: payload.email,
+          firstName: "Admin",
+          lastName: "User",
+          role: "ADMIN" as const,
+          isActive: true,
+        };
+      }
+
+      if (payload.role === "CUSTOMER") {
+        return {
+          id: userId,
+          email: payload.email,
+          firstName: "Registered",
+          lastName: "Customer",
+          role: "CUSTOMER" as const,
+          isActive: true,
+        };
+      }
+    }
+
+    return dbUser;
+  } catch (error) {
+    console.error("Error fetching user from database:", error);
+    
+    // Fallback to static data on database error
+    const userId = payload.id || payload.userId || "";
+    
+    if (payload.role === "ADMIN") {
+      return {
+        id: userId,
+        email: payload.email,
+        firstName: "Admin",
+        lastName: "User",
+        role: "ADMIN" as const,
+        isActive: true,
+      };
+    }
+
+    if (payload.role === "CUSTOMER") {
+      return {
+        id: userId,
+        email: payload.email,
+        firstName: "Registered",
+        lastName: "Customer",
+        role: "CUSTOMER" as const,
+        isActive: true,
+      };
+    }
   }
 
   return null;

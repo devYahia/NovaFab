@@ -72,9 +72,10 @@ export default function HomePage() {
       <section className="relative py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-4">
-              🚀 Advanced Manufacturing Platform
-            </Badge>
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold mb-8 shadow-lg">
+              <Factory className="mr-2 h-4 w-4" />
+              Advanced Manufacturing Platform
+            </div>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Precision Manufacturing
               <span className="block text-blue-600">Made Simple</span>
@@ -330,7 +331,7 @@ export default function HomePage() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-blue-600"
+                className="w-full sm:w-auto border-white text-blue-100 hover:bg-white hover:text-blue-600"
               >
                 Contact Sales
               </Button>

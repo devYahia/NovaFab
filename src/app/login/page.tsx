@@ -54,9 +54,11 @@ function LoginForm() {
         throw new Error(data.error || "Login failed");
       }
 
+      // Small delay to ensure cookie is set before redirect
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
       // Redirect to the intended page or dashboard
-      router.push(redirectTo);
-      router.refresh();
+      window.location.href = redirectTo;
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {

@@ -84,6 +84,11 @@ const nextConfig = {
         destination: "/admin/dashboard",
         permanent: false,
       },
+      {
+        source: "/dashboard/admin",
+        destination: "/admin/dashboard",
+        permanent: false,
+      },
     ];
   },
 

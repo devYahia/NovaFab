@@ -60,8 +60,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  // Redirect authenticated users from auth routes (but not during POST requests)
-  if (isAuthRoute && user && request.method === "GET") {
+  // Redirect authenticated users from auth routes (but not during POST requests or if there's a redirect param)
+  if (isAuthRoute && user && request.method === "GET" && !request.nextUrl.searchParams.has("redirect")) {
     if (pathname === "/admin/login") {
       // Only allow ADMIN users on admin login page, redirect others to their dashboard
       if (user.role !== "ADMIN") {

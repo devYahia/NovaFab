@@ -21,43 +21,15 @@ import {
   User,
 } from "lucide-react";
 
-// Mock data - in a real app, this would come from the database
-const orders = [
-  {
-    id: "ORD-001",
-    title: "Custom Metal Bracket",
-    serviceType: "CNC Machining",
-    status: "in_progress",
-    urgency: "high",
-    totalCost: 245.5,
-    estimatedDelivery: "2024-01-15",
-  },
-  {
-    id: "ORD-002",
-    title: "Prototype Housing",
-    serviceType: "3D Printing",
-    status: "completed",
-    urgency: "medium",
-    totalCost: 89.99,
-    estimatedDelivery: "2024-01-10",
-  },
-  {
-    id: "ORD-003",
-    title: "Sheet Metal Panel",
-    serviceType: "Laser Cutting",
-    status: "pending",
-    urgency: "low",
-    totalCost: 156.75,
-    estimatedDelivery: "2024-01-20",
-  },
-];
+// Real data - will be fetched from the database
+const orders: any[] = [];
 
-// Mock statistics
+// Real statistics
 const stats = {
-  totalOrders: 12,
-  activeOrders: 3,
-  completedOrders: 8,
-  totalSpent: 1247.89,
+  totalOrders: 0,
+  activeOrders: 0,
+  completedOrders: 0,
+  totalSpent: 0,
 };
 
 export default function Dashboard() {
@@ -129,7 +101,7 @@ export default function Dashboard() {
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Total Orders</p>
                 <p className="text-2xl font-bold text-gray-900">{stats.totalOrders}</p>
-                <p className="text-xs text-green-600 mt-1">+12% from last month</p>
+                <p className="text-xs text-gray-500 mt-1">Successfully completed</p>
               </div>
               <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
                 <Package className="h-6 w-6 text-blue-600" />
@@ -144,7 +116,7 @@ export default function Dashboard() {
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Active Orders</p>
                 <p className="text-2xl font-bold text-gray-900">{stats.activeOrders}</p>
-                <p className="text-xs text-yellow-600 mt-1">+5% from last week</p>
+                <p className="text-xs text-gray-500 mt-1">Currently active</p>
               </div>
               <div className="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
                 <Clock className="h-6 w-6 text-yellow-600" />
@@ -159,7 +131,7 @@ export default function Dashboard() {
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Completed</p>
                 <p className="text-2xl font-bold text-gray-900">{stats.completedOrders}</p>
-                <p className="text-xs text-green-600 mt-1">+8% from last month</p>
+                <p className="text-xs text-gray-500 mt-1">All time</p>
               </div>
               <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
                 <CheckCircle className="h-6 w-6 text-green-600" />
@@ -176,7 +148,7 @@ export default function Dashboard() {
                 <p className="text-2xl font-bold text-gray-900">
                   ${stats.totalSpent.toFixed(2)}
                 </p>
-                <p className="text-xs text-green-600 mt-1">+15% from last month</p>
+                <p className="text-xs text-gray-500 mt-1">All time</p>
               </div>
               <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
                 <DollarSign className="h-6 w-6 text-green-600" />
@@ -204,73 +176,89 @@ export default function Dashboard() {
           </div>
         </CardHeader>
         <CardContent className="p-6">
-          <div className="space-y-4">
-            {orders.map((order, index) => (
-              <div
-                key={order.id}
-                className="group relative overflow-hidden rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all duration-300"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-50/0 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative z-10 flex items-center justify-between">
-                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                      <div className="p-2 rounded-lg bg-blue-100">
-                        {getStatusIcon(order.status)}
+          {orders.length === 0 ? (
+            <div className="text-center py-12">
+              <Package className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No orders yet</h3>
+              <p className="text-gray-600 mb-6">
+                Start your first manufacturing project to see your orders here.
+              </p>
+              <Link href="/dashboard/orders/new">
+                <Button>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Your First Order
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {orders.map((order, index) => (
+                <div
+                  key={order.id}
+                  className="group relative overflow-hidden rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all duration-300"
+                  style={{
+                    animationDelay: `${index * 100}ms`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-50/0 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                      <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                        <div className="p-2 rounded-lg bg-blue-100">
+                          {getStatusIcon(order.status)}
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                            {order.title}
+                          </h4>
+                          <p className="text-sm text-gray-600">
+                            {order.id} • {order.serviceType}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
-                          {order.title}
-                        </h4>
-                        <p className="text-sm text-gray-600">
-                          {order.id} • {order.serviceType}
+                    </div>
+
+                    <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                      <div className="text-right">
+                        <p className="text-sm font-medium text-gray-900">
+                          ${order.totalCost.toFixed(2)}
+                        </p>
+                        <p className="text-xs text-gray-600">
+                          Delivery:{" "}
+                          {new Date(order.estimatedDelivery).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            },
+                          )}
                         </p>
                       </div>
-                    </div>
-                  </div>
 
-                  <div className="flex items-center space-x-4 rtl:space-x-reverse">
-                    <div className="text-right">
-                      <p className="text-sm font-medium text-gray-900">
-                        ${order.totalCost.toFixed(2)}
-                      </p>
-                      <p className="text-xs text-gray-600">
-                        Delivery:{" "}
-                        {new Date(order.estimatedDelivery).toLocaleDateString(
-                          "en-US",
-                          {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          },
-                        )}
-                      </p>
-                    </div>
+                      <div className="flex flex-col space-y-1">
+                        <Badge className={getStatusColor(order.status)}>
+                          {order.status.replace("_", " ")}
+                        </Badge>
+                        <Badge
+                          variant="outline"
+                          className={getUrgencyColor(order.urgency)}
+                        >
+                          {order.urgency}
+                        </Badge>
+                      </div>
 
-                    <div className="flex flex-col space-y-1">
-                      <Badge className={getStatusColor(order.status)}>
-                        {order.status.replace("_", " ")}
-                      </Badge>
-                      <Badge
-                        variant="outline"
-                        className={getUrgencyColor(order.urgency)}
-                      >
-                        {order.urgency}
-                      </Badge>
+                      <Link href={`/dashboard/orders/${order.id}`}>
+                        <Button variant="ghost" size="sm">
+                          View
+                        </Button>
+                      </Link>
                     </div>
-
-                    <Link href={`/dashboard/orders/${order.id}`}>
-                      <Button variant="ghost" size="sm">
-                        View
-                      </Button>
-                    </Link>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </CardContent>
       </Card>
 

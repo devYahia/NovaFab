@@ -50,11 +50,33 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleLogout = () => {
-    // Clear token from cookies
-    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    // Redirect to home page
-    router.push("/");
+  const handleLogout = async () => {
+    try {
+      // Call logout API endpoint
+      const response = await fetch("/api/auth/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+      
+      if (response.ok) {
+        // Clear token from cookies as fallback
+        document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+        
+        // Force a hard redirect to ensure complete logout
+        window.location.href = "/";
+      } else {
+        console.error("Logout failed:", response.statusText);
+        // Still redirect even if API fails
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+      // Clear cookies and redirect even if API call fails
+      document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      document.cookie = "auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+      window.location.href = "/";
+    }
   };
 
   return (

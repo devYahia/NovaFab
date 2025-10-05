@@ -221,11 +221,7 @@ export default function NewOrderPage() {
       case 1:
         return formData.title && formData.description && formData.serviceType;
       case 2:
-        return (
-          formData.material &&
-          formData.quantity > 0 &&
-          formData.files.length > 0
-        );
+        return true; // Files & Materials are now optional
       case 3:
         return true; // Specifications are optional
       case 4:
@@ -430,12 +426,12 @@ export default function NewOrderPage() {
               <CardHeader>
                 <CardTitle>Files & Materials</CardTitle>
                 <CardDescription>
-                  Upload your design files and select materials
+                  Upload your design files and select materials (Optional)
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div>
-                  <Label>Design Files *</Label>
+                  <Label>Design Files</Label>
                   <div className="mt-2">
                     <FileUpload
                       onFilesUploaded={handleFileUpload}
@@ -460,7 +456,7 @@ export default function NewOrderPage() {
 
                 {selectedService && (
                   <div>
-                    <Label htmlFor="material">Material *</Label>
+                    <Label htmlFor="material">Material</Label>
                     <Select
                       value={formData.material}
                       onValueChange={(value) =>
@@ -468,7 +464,7 @@ export default function NewOrderPage() {
                       }
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Select material" />
+                        <SelectValue placeholder="Select material (optional)" />
                       </SelectTrigger>
                       <SelectContent>
                         {selectedService.materials.map((material) => (
@@ -482,7 +478,7 @@ export default function NewOrderPage() {
                 )}
 
                 <div>
-                  <Label htmlFor="quantity">Quantity *</Label>
+                  <Label htmlFor="quantity">Quantity</Label>
                   <Input
                     id="quantity"
                     type="number"
@@ -495,7 +491,7 @@ export default function NewOrderPage() {
                         parseInt(e.target.value) || 1,
                       )
                     }
-                    required
+                    placeholder="Enter quantity (optional)"
                   />
                 </div>
 

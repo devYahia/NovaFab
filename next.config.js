@@ -1,5 +1,8 @@
 ﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Output configuration for Docker deployment
+  output: 'standalone',
+  
   // Image optimization configuration
   images: {
     remotePatterns: [

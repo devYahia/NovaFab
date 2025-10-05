@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
 
     // Create JWT token
     const secret = new TextEncoder().encode(
-      process.env.JWT_SECRET || "your-secret-key",
+      process.env.NEXTAUTH_SECRET || process.env.JWT_SECRET || "your-secret-key",
     );
     const token = await new SignJWT({
       id: adminUser.id,

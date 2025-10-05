@@ -4,7 +4,7 @@ import { jwtVerify } from "jose";
 import { NextRequest } from "next/server";
 import { prisma } from "./prisma";
 
-const JWT_SECRET = process.env.JWT_SECRET || "fallback-secret-key";
+const JWT_SECRET = process.env.NEXTAUTH_SECRET || process.env.JWT_SECRET || "fallback-secret-key";
 
 // User type definition
 export interface User {

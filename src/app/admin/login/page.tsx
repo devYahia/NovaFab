@@ -113,13 +113,7 @@ export default function AdminLogin() {
         ></div>
       </div>
 
-      {/* Security Warning Banner */}
-      <div className="absolute top-4 left-4 right-4 bg-red-600/20 border border-red-500/30 rounded-lg p-3 backdrop-blur-sm">
-        <div className="flex items-center gap-2 text-red-200 text-sm">
-          <AlertTriangle className="w-4 h-4" />
-          <span>Restricted Area - Administrators Only</span>
-        </div>
-      </div>
+
 
       <Card className="w-full max-w-md bg-black/40 border-red-500/30 backdrop-blur-xl shadow-2xl">
         <CardHeader className="text-center pb-8">

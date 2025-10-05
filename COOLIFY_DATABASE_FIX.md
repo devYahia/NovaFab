@@ -16,39 +16,52 @@
 4. ابحث عن متغير `DATABASE_URL`
 5. قم بتحديثه بالقيمة الصحيحة
 
+#### القيمة الحالية (خطأ):
+```
+DATABASE_URL=postgresql://postgres:xKpLObgvO7EMmHLi3EPngicq30X3Wv6Z90iCTgqKhqddYHNgyphEhtU36tCv8pjc@postgres-service:5432/postgres
+```
+
 #### القيمة الصحيحة لـ DATABASE_URL:
 ```
-DATABASE_URL="postgresql://username:password@postgresql-database-ngwsgkgk4ko4gsog48kwowc0:5432/database_name"
+DATABASE_URL=postgresql://postgres:xKpLObgvO7EMmHLi3EPngicq30X3Wv6Z90iCTgqKhqddYHNgyphEhtU36tCv8pjc@postgresql-database-ngwsgkgk4ko4gsog48kwowc0:5432/postgres
 ```
 
 **ملاحظة مهمة:** استخدم اسم الخدمة الداخلي لقاعدة البيانات في Coolify وهو:
 `postgresql-database-ngwsgkgk4ko4gsog48kwowc0`
 
-### 2. الحصول على بيانات الاتصال الصحيحة
+### 2. بيانات الاتصال الصحيحة
 
-من لوحة تحكم Coolify:
-1. اذهب إلى قسم "Databases"
-2. اختر قاعدة البيانات `postgresql-database-ngwsgkgk4ko4gsog48kwowc0`
-3. انسخ بيانات الاتصال:
-   - Username
-   - Password  
-   - Database Name
-   - Internal Host (يجب أن يكون: postgresql-database-ngwsgkgk4ko4gsog48kwowc0)
+بيانات قاعدة البيانات:
+- **Username:** postgres
+- **Password:** xKpLObgvO7EMmHLi3EPngicq30X3Wv6Z90iCTgqKhqddYHNgyphEhtU36tCv8pjc
+- **Database Name:** postgres
+- **Internal Host:** postgresql-database-ngwsgkgk4ko4gsog48kwowc0
+- **Port:** 5432
 
-### 3. تحديث متغيرات البيئة المطلوبة
+### 3. جميع متغيرات البيئة المطلوبة
 
 تأكد من وجود هذه المتغيرات في Coolify:
 
 ```env
-# Database Connection
-DATABASE_URL="postgresql://[username]:[password]@postgresql-database-ngwsgkgk4ko4gsog48kwowc0:5432/[database_name]"
+# Admin Configuration
+ADMIN_EMAIL=admin@novafab.com
+ADMIN_PASSWORD=admin123
+
+# Database Connection (الصحيح)
+DATABASE_URL=postgresql://postgres:xKpLObgvO7EMmHLi3EPngicq30X3Wv6Z90iCTgqKhqddYHNgyphEhtU36tCv8pjc@postgresql-database-ngwsgkgk4ko4gsog48kwowc0:5432/postgres
+
+# Server Configuration
+HOSTNAME=0.0.0.0
+PORT=3000
 
 # NextAuth Configuration
-NEXTAUTH_SECRET="your-secure-secret-key"
-NEXTAUTH_URL="http://kgoc40so00cs4w8ksc8o04kg.31.220.83.214.sslip.io"
+NEXTAUTH_SECRET=2DjQpM6CP8QJT/Tjf5CCCFfvSlMKRi6cWVMGDKtNfvw=
+NEXTAUTH_URL=http://kgoc40so00cs4w6kscBo04kg.31.220.83.214.sslip.io
 
-# Production Environment
-NODE_ENV="production"
+# App Configuration
+NEXT_PUBLIC_APP_URL=http://kgoc40so00cs4w6kscBo04kg.31.220.83.214.sslip.io
+NEXT_TELEMETRY_DISABLED=1
+NODE_ENV=production
 ```
 
 ### 4. إعادة النشر
